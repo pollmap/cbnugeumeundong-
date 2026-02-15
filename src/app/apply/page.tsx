@@ -279,13 +279,17 @@ export default function ApplyPage() {
                   />
                 </div>
                 <div>
-                  <label className={labelClass}>학번{requiredMark}</label>
+                  <label className={labelClass}>
+                    학번{requiredMark}
+                    <span className="text-gray-600 text-xs ml-2">(10자리)</span>
+                  </label>
                   <input
                     required
                     type="text"
                     value={form.studentId}
-                    onChange={(e) => set("studentId", e.target.value.replace(/\D/g, ""))}
+                    onChange={(e) => set("studentId", e.target.value.replace(/\D/g, "").slice(0, 10))}
                     placeholder="2024000000"
+                    maxLength={10}
                     className={inputClass}
                   />
                 </div>
@@ -304,7 +308,10 @@ export default function ApplyPage() {
                   />
                 </div>
                 <div>
-                  <label className={labelClass}>학년{requiredMark}</label>
+                  <label className={labelClass}>
+                    학년{requiredMark}
+                    <span className="text-gray-600 text-xs ml-2">(2026년 1학기 기준)</span>
+                  </label>
                   <select
                     required
                     value={form.grade}
