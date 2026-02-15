@@ -63,7 +63,7 @@ export default function ActivityPage() {
       {/* Header */}
       <section className="pt-24 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">
+          <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">
             Activity
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
@@ -85,17 +85,17 @@ export default function ActivityPage() {
             {regularActivities.map((activity) => (
               <div
                 key={activity.title}
-                className="bg-navy-900/50 border border-white/5 rounded-xl p-8 flex flex-col md:flex-row gap-6"
+                className="bg-dark-900 border border-white/5 rounded-xl p-8 flex flex-col md:flex-row gap-6"
               >
-                <div className="w-14 h-14 bg-gold-500/10 rounded-xl flex items-center justify-center shrink-0">
-                  <activity.icon className="w-7 h-7 text-gold-500" />
+                <div className="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center shrink-0">
+                  <activity.icon className="w-7 h-7 text-white" />
                 </div>
                 <div className="flex-1">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
                     <h3 className="text-white text-lg font-semibold">
                       {activity.title}
                     </h3>
-                    <span className="text-gold-500 text-sm bg-gold-500/10 px-3 py-0.5 rounded-full w-fit">
+                    <span className="text-gray-400 text-sm bg-white/5 px-3 py-0.5 rounded-full w-fit">
                       {activity.schedule}
                     </span>
                   </div>
@@ -110,7 +110,7 @@ export default function ActivityPage() {
       </section>
 
       {/* Overview */}
-      <section className="py-16 px-4 bg-navy-900/30">
+      <section className="py-16 px-4 bg-dark-800">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-10 text-center">
             Overview
@@ -119,10 +119,10 @@ export default function ActivityPage() {
             {semesterActivities.map((activity) => (
               <div
                 key={activity.title}
-                className="bg-navy-900/50 border border-white/5 rounded-xl p-8 text-center"
+                className="bg-dark-900 border border-white/5 rounded-xl p-8 text-center"
               >
-                <div className="w-14 h-14 bg-gold-500/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                  <activity.icon className="w-7 h-7 text-gold-500" />
+                <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-5">
+                  <activity.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-white font-semibold text-lg mb-3">
                   {activity.title}
@@ -158,26 +158,26 @@ export default function ActivityPage() {
                 key={item.week}
                 className={`flex items-center gap-4 border border-white/5 rounded-lg px-6 py-4 ${
                   item.week === "5주차"
-                    ? "bg-gold-500/5 border-gold-500/20"
-                    : "bg-navy-900/50"
+                    ? "bg-white/5 border-white/20"
+                    : "bg-dark-900"
                 }`}
               >
                 <span
                   className={`font-bold text-sm w-16 shrink-0 ${
-                    item.week === "5주차" ? "text-gold-400" : "text-gold-500"
+                    item.week === "5주차" ? "text-white" : "text-gray-400"
                   }`}
                 >
                   {item.week}
                 </span>
                 <div
                   className={`w-2 h-2 rounded-full shrink-0 ${
-                    item.week === "5주차" ? "bg-gold-400" : "bg-gold-500"
+                    item.week === "5주차" ? "bg-white" : "bg-gray-500"
                   }`}
                 />
                 <span
                   className={
                     item.week === "5주차"
-                      ? "text-gold-300 font-medium"
+                      ? "text-white font-medium"
                       : "text-gray-300"
                   }
                 >
@@ -190,10 +190,10 @@ export default function ActivityPage() {
       </section>
 
       {/* AI Copy Prevention */}
-      <section className="py-16 px-4 bg-navy-900/30">
+      <section className="py-16 px-4 bg-dark-800">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-navy-900/50 border border-gold-500/20 rounded-xl p-8">
-            <h3 className="text-gold-500 font-bold text-lg mb-4">
+          <div className="bg-dark-900 border border-white/20 rounded-xl p-8">
+            <h3 className="text-white font-bold text-lg mb-4">
               AI 복붙 3중 방지 시스템
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">

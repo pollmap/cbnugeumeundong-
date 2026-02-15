@@ -12,7 +12,7 @@ export default function JoinUsPage() {
       {/* Header */}
       <section className="pt-24 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">
+          <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">
             Join Us
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
@@ -29,16 +29,16 @@ export default function JoinUsPage() {
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <Link
             href="/join-us/how-to-apply"
-            className="group bg-navy-900/50 border border-white/5 rounded-xl p-8 hover:border-gold-500/30 transition-all duration-300 block"
+            className="group bg-dark-900 border border-white/5 rounded-xl p-8 hover:border-white/20 transition-all duration-300 block"
           >
-            <div className="w-14 h-14 bg-gold-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-500/20 transition-colors">
-              <FileText className="w-7 h-7 text-gold-500" />
+            <div className="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors">
+              <FileText className="w-7 h-7 text-white" />
             </div>
             <h2 className="text-white text-xl font-bold mb-3">How to Apply</h2>
             <p className="text-gray-400 mb-6">
               지원서 양식 다운로드 및 온라인 지원서 제출 방법을 안내합니다.
             </p>
-            <span className="inline-flex items-center gap-2 text-gold-500 font-medium group-hover:text-gold-400 transition-colors">
+            <span className="inline-flex items-center gap-2 text-white font-medium group-hover:text-gray-300 transition-colors">
               지원하러 가기
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>
@@ -46,16 +46,16 @@ export default function JoinUsPage() {
 
           <Link
             href="/join-us/recruitment"
-            className="group bg-navy-900/50 border border-white/5 rounded-xl p-8 hover:border-gold-500/30 transition-all duration-300 block"
+            className="group bg-dark-900 border border-white/5 rounded-xl p-8 hover:border-white/20 transition-all duration-300 block"
           >
-            <div className="w-14 h-14 bg-gold-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-gold-500/20 transition-colors">
-              <Users className="w-7 h-7 text-gold-500" />
+            <div className="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors">
+              <Users className="w-7 h-7 text-white" />
             </div>
             <h2 className="text-white text-xl font-bold mb-3">Recruitment</h2>
             <p className="text-gray-400 mb-6">
               모집 일정, 선발 기준 및 자주 묻는 질문을 확인하세요.
             </p>
-            <span className="inline-flex items-center gap-2 text-gold-500 font-medium group-hover:text-gold-400 transition-colors">
+            <span className="inline-flex items-center gap-2 text-white font-medium group-hover:text-gray-300 transition-colors">
               자세히 보기
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </span>

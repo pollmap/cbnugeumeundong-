@@ -50,7 +50,7 @@ export default function RecruitmentPage() {
       {/* Header */}
       <section className="pt-24 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">
+          <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">
             Recruitment
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
@@ -72,10 +72,10 @@ export default function RecruitmentPage() {
             {timeline.map((item) => (
               <div
                 key={item.step}
-                className="bg-navy-900/50 border border-white/5 rounded-xl p-6 text-center"
+                className="bg-dark-900 border border-white/5 rounded-xl p-6 text-center"
               >
-                <div className="w-10 h-10 bg-gold-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-gold-500 font-bold text-sm">
+                <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white font-bold text-sm">
                     {item.step}
                   </span>
                 </div>
@@ -88,16 +88,16 @@ export default function RecruitmentPage() {
       </section>
 
       {/* Criteria */}
-      <section className="py-16 px-4 bg-navy-900/30">
+      <section className="py-16 px-4 bg-dark-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-10 text-center">
             지원 자격
           </h2>
-          <div className="bg-navy-900/50 border border-white/5 rounded-xl p-8">
+          <div className="bg-dark-900 border border-white/5 rounded-xl p-8">
             <ul className="space-y-4">
               {criteria.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-white shrink-0 mt-0.5" />
                   <span className="text-gray-300">{item}</span>
                 </li>
               ))}
@@ -116,10 +116,10 @@ export default function RecruitmentPage() {
             {faqs.map((faq) => (
               <div
                 key={faq.q}
-                className="bg-navy-900/50 border border-white/5 rounded-xl p-6"
+                className="bg-dark-900 border border-white/5 rounded-xl p-6"
               >
                 <div className="flex items-start gap-3 mb-3">
-                  <HelpCircle className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+                  <HelpCircle className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
                   <h3 className="text-white font-semibold">{faq.q}</h3>
                 </div>
                 <p className="text-gray-400 pl-8 leading-relaxed">{faq.a}</p>
@@ -130,7 +130,7 @@ export default function RecruitmentPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 px-4 bg-navy-900/30">
+      <section className="py-16 px-4 bg-dark-800">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl font-bold text-white mb-4">
             지원할 준비가 되셨나요?
@@ -140,7 +140,7 @@ export default function RecruitmentPage() {
           </p>
           <Link
             href="/join-us/how-to-apply"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gold-500 text-navy-950 font-semibold rounded-lg hover:bg-gold-400 transition-all hover:shadow-lg hover:shadow-gold-500/25"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors"
           >
             지원하러 가기
             <ArrowRight className="w-4 h-4" />

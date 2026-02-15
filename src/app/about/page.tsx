@@ -50,14 +50,14 @@ export default function AboutPage() {
       {/* Header */}
       <section className="pt-24 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">
+          <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">
             About Us
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
             CUFA를 소개합니다
           </h1>
           <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
-            CUFA는 충북대학교 가치투자학회입니다. AI 리서치 워크스테이션
+            CUFA는 충북대학교 금융분석학회입니다. AI 리서치 워크스테이션
             &ldquo;NEXUS&rdquo;를 기반으로, 전국 어디에도 없는 방식으로 투자
             리서치를 수행합니다.
           </p>
@@ -65,7 +65,7 @@ export default function AboutPage() {
       </section>
 
       {/* What makes CUFA different */}
-      <section className="py-16 px-4 bg-navy-900/30">
+      <section className="py-16 px-4 bg-dark-800">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-12">
             CUFA는 뭐가 다른가
@@ -79,13 +79,13 @@ export default function AboutPage() {
             ].map((item) => (
               <div
                 key={item.before}
-                className="bg-navy-900/50 border border-white/5 rounded-xl p-6 flex items-center gap-4"
+                className="bg-dark-900 border border-white/5 rounded-xl p-6 flex items-center gap-4"
               >
                 <div className="flex-1">
                   <p className="text-gray-500 text-sm line-through mb-1">
                     {item.before}
                   </p>
-                  <p className="text-gold-400 font-medium text-sm">
+                  <p className="text-white font-medium text-sm">
                     {item.after}
                   </p>
                 </div>
@@ -98,9 +98,9 @@ export default function AboutPage() {
       {/* Mission & Vision */}
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="bg-navy-900/50 border border-white/5 rounded-xl p-8">
-            <div className="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center mb-5">
-              <Target className="w-6 h-6 text-gold-500" />
+          <div className="bg-dark-900 border border-white/5 rounded-xl p-8">
+            <div className="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-5">
+              <Target className="w-6 h-6 text-white" />
             </div>
             <h3 className="text-white text-xl font-bold mb-4">Mission</h3>
             <p className="text-gray-400 leading-relaxed">
@@ -108,9 +108,9 @@ export default function AboutPage() {
               갖춘 투자 인재를 양성합니다.
             </p>
           </div>
-          <div className="bg-navy-900/50 border border-white/5 rounded-xl p-8">
-            <div className="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center mb-5">
-              <Eye className="w-6 h-6 text-gold-500" />
+          <div className="bg-dark-900 border border-white/5 rounded-xl p-8">
+            <div className="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-5">
+              <Eye className="w-6 h-6 text-white" />
             </div>
             <h3 className="text-white text-xl font-bold mb-4">Vision</h3>
             <p className="text-gray-400 leading-relaxed">
@@ -122,7 +122,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-16 px-4 bg-navy-900/30">
+      <section className="py-16 px-4 bg-dark-800">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-12">
             핵심 가치
@@ -131,10 +131,10 @@ export default function AboutPage() {
             {values.map((v) => (
               <div
                 key={v.title}
-                className="text-center bg-navy-900/50 border border-white/5 rounded-xl p-8"
+                className="text-center bg-dark-900 border border-white/5 rounded-xl p-8"
               >
-                <div className="w-14 h-14 bg-gold-500/10 rounded-full flex items-center justify-center mx-auto mb-5">
-                  <v.icon className="w-7 h-7 text-gold-500" />
+                <div className="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-5">
+                  <v.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-white font-semibold text-lg mb-3">
                   {v.title}
@@ -158,10 +158,10 @@ export default function AboutPage() {
             {fields.map((f) => (
               <div
                 key={f.title}
-                className="flex items-start gap-4 bg-navy-900/50 border border-white/5 rounded-xl p-6"
+                className="flex items-start gap-4 bg-dark-900 border border-white/5 rounded-xl p-6"
               >
-                <div className="w-10 h-10 bg-gold-500/10 rounded-lg flex items-center justify-center shrink-0">
-                  <f.icon className="w-5 h-5 text-gold-500" />
+                <div className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center shrink-0">
+                  <f.icon className="w-5 h-5 text-white" />
                 </div>
                 <div>
                   <h3 className="text-white font-semibold mb-1">{f.title}</h3>
@@ -174,7 +174,7 @@ export default function AboutPage() {
       </section>
 
       {/* What you get */}
-      <section className="py-16 px-4 bg-navy-900/30">
+      <section className="py-16 px-4 bg-dark-800">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl font-bold text-white mb-6">
             한 학기 뒤 여러분이 얻는 것
@@ -193,9 +193,9 @@ export default function AboutPage() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="bg-navy-900/50 border border-white/5 rounded-lg p-5 text-left"
+                className="bg-dark-900 border border-white/5 rounded-lg p-5 text-left"
               >
-                <p className="text-gold-500 font-semibold text-sm mb-1">
+                <p className="text-white font-semibold text-sm mb-1">
                   {item.label}
                 </p>
                 <p className="text-gray-400 text-sm">{item.desc}</p>
