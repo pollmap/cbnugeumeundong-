@@ -4,8 +4,8 @@ import {
   TrendingUp,
   Trophy,
   Calendar,
-  Users,
-  BarChart3,
+  Cpu,
+  FileText,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -14,44 +14,46 @@ export const metadata: Metadata = {
 
 const regularActivities = [
   {
-    icon: BookOpen,
-    title: "주간 스터디",
+    icon: Calendar,
+    title: "정기 세션",
     description:
-      "매주 정기적으로 모여 금융·경제 관련 주제를 학습하고 발표합니다. 기본적 분석, 기술적 분석, 재무제표 분석 등 다양한 주제를 다룹니다.",
-    schedule: "매주 수요일 18:00",
+      "매주 목요일 오후 7시, 교육·발표·투심 세션을 진행합니다. 시장 브리핑, 종목 피치, 반론 토론, 포트폴리오 리뷰를 포함합니다.",
+    schedule: "매주 목요일 19:00",
+  },
+  {
+    icon: BookOpen,
+    title: "팀 리서치",
+    description:
+      "팀당 3명으로 구성, 6주 블록 동안 1건의 심층 리서치를 수행합니다. 종목 선정부터 밸류에이션, 리포트 작성까지 전 과정을 경험합니다.",
+    schedule: "6주 블록 × 2",
   },
   {
     icon: TrendingUp,
-    title: "모의 투자",
+    title: "IC 세션 (투자심의)",
     description:
-      "가상 자금으로 실전과 동일한 환경에서 투자를 진행합니다. 투자 일지를 작성하고 결과를 공유하며 서로의 투자 전략을 배웁니다.",
-    schedule: "학기 중 상시",
-  },
-  {
-    icon: Users,
-    title: "특강 & 세미나",
-    description:
-      "금융업계 현직자, 교수님 등을 초빙하여 특강을 진행합니다. 실무 경험과 최신 트렌드를 직접 들을 수 있습니다.",
-    schedule: "월 1~2회",
+      "5주차에 진행되는 가장 중요한 시간. 워크벤치를 띄우고 발표하며, CRITIC 반론과 저널 기반 질의를 거쳐 편입/편출을 투표합니다.",
+    schedule: "블록 5주차",
   },
 ];
 
 const semesterActivities = [
   {
     icon: Trophy,
-    title: "모의 투자 대회",
-    description: "학기별 모의 투자 대회를 통해 우수 투자자를 선정합니다.",
-  },
-  {
-    icon: Calendar,
-    title: "MT & 네트워킹",
-    description: "학기 초 MT와 정기 네트워킹 행사로 부원 간 친목을 다집니다.",
-  },
-  {
-    icon: BarChart3,
-    title: "리서치 프로젝트",
+    title: "100만원 실전 펀드",
     description:
-      "팀별 산업·기업 분석 리포트를 작성하여 발표하는 프로젝트를 진행합니다.",
+      "실제 자금 100만원을 운용합니다. 편입/편출은 표결로만, 종목당 최대 30% 제한, 모든 편입에 킬조건(매도 기준) 필수.",
+  },
+  {
+    icon: Cpu,
+    title: "NEXUS 플랫폼",
+    description:
+      "5대 AI 에이전트(MACRO·SCREENER·SECTOR·VALUER·CRITIC)와 밸류에이션 워크벤치, 투자 판단 저널을 활용합니다.",
+  },
+  {
+    icon: FileText,
+    title: "리포트 발간",
+    description:
+      "팀당 학기 2건, 전체 4건의 15~20p 리포트를 발간합니다. AI 원문 vs 본인 분석 비교 섹션이 필수 포함됩니다.",
   },
 ];
 
@@ -68,7 +70,7 @@ export default function ActivityPage() {
             활동 소개
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            금은동의 다양한 활동을 소개합니다.
+            CUFA의 다양한 활동을 소개합니다.
           </p>
         </div>
       </section>
@@ -134,33 +136,73 @@ export default function ActivityPage() {
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* 6-Week Block Timeline */}
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-white mb-10 text-center">
-            학기별 일정
+          <h2 className="text-2xl font-bold text-white mb-4 text-center">
+            6주 블록 구조
           </h2>
+          <p className="text-gray-500 text-sm text-center mb-10">
+            학기당 2블록 진행, 팀당 블록마다 1건 리서치
+          </p>
           <div className="space-y-4">
             {[
-              { month: "3월", event: "신입부원 모집 & OT" },
-              { month: "4-5월", event: "정규 스터디 & 모의투자 시작" },
-              { month: "6월", event: "1학기 모의투자 대회 & 결산" },
-              { month: "7-8월", event: "방학 스터디 (선택)" },
-              { month: "9월", event: "2학기 OT & 스터디 재개" },
-              { month: "10-11월", event: "정규 스터디 & 특강" },
-              { month: "12월", event: "2학기 모의투자 대회 & 송년회" },
+              { week: "1주차", event: "종목 선정 + 산업 조사 (사업보고서 읽기)" },
+              { week: "2주차", event: "재무분석 + 산업분석 심화" },
+              { week: "3주차", event: "밸류에이션 모델링 (워크벤치 활용)" },
+              { week: "4주차", event: "리포트 초안 완성" },
+              { week: "5주차", event: "IC 세션 — 발표 + 반론 토론 + 피드백 + 투표" },
+              { week: "6주차", event: "피드백 반영 최종 리포트 제출 + 편입 결정" },
             ].map((item) => (
               <div
-                key={item.month}
-                className="flex items-center gap-4 bg-navy-900/50 border border-white/5 rounded-lg px-6 py-4"
+                key={item.week}
+                className={`flex items-center gap-4 border border-white/5 rounded-lg px-6 py-4 ${
+                  item.week === "5주차"
+                    ? "bg-gold-500/5 border-gold-500/20"
+                    : "bg-navy-900/50"
+                }`}
               >
-                <span className="text-gold-500 font-bold text-sm w-16 shrink-0">
-                  {item.month}
+                <span
+                  className={`font-bold text-sm w-16 shrink-0 ${
+                    item.week === "5주차" ? "text-gold-400" : "text-gold-500"
+                  }`}
+                >
+                  {item.week}
                 </span>
-                <div className="w-2 h-2 bg-gold-500 rounded-full shrink-0" />
-                <span className="text-gray-300">{item.event}</span>
+                <div
+                  className={`w-2 h-2 rounded-full shrink-0 ${
+                    item.week === "5주차" ? "bg-gold-400" : "bg-gold-500"
+                  }`}
+                />
+                <span
+                  className={
+                    item.week === "5주차"
+                      ? "text-gold-300 font-medium"
+                      : "text-gray-300"
+                  }
+                >
+                  {item.event}
+                </span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Copy Prevention */}
+      <section className="py-16 px-4 bg-navy-900/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-navy-900/50 border border-gold-500/20 rounded-xl p-8">
+            <h3 className="text-gold-500 font-bold text-lg mb-4">
+              AI 복붙 3중 방지 시스템
+            </h3>
+            <p className="text-gray-400 text-sm leading-relaxed mb-4">
+              리포트 제출 시 AI 원문, 워크벤치 수정 이력, 저널 기록, 최종본이
+              동시 제출됩니다. 시스템이 diff(차이점)를 자동 대조합니다.
+            </p>
+            <p className="text-gray-300 text-sm font-medium">
+              AI와 생각이 다른 지점과 그 근거를 적는 것이 핵심입니다.
+            </p>
           </div>
         </div>
       </section>

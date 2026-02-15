@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Target, Eye, Users, BarChart3, BookOpen, Lightbulb } from "lucide-react";
+import { Target, Eye, Cpu, BarChart3, BookOpen, Lightbulb } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -7,26 +7,41 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    icon: Target,
-    title: "실전 중심",
-    description: "이론에만 그치지 않고 실제 투자 경험을 통해 배웁니다.",
+    icon: Cpu,
+    title: "AI 방법론 내재화",
+    description:
+      "AI 결과를 복붙하지 않습니다. 밸류에이션 워크벤치에서 AI의 가정을 직접 수정하고 검증하여 독자적 관점을 강화합니다.",
   },
   {
-    icon: Users,
-    title: "함께 성장",
-    description: "동료들과 함께 토론하고 공유하며 성장합니다.",
+    icon: Target,
+    title: "실전 투자",
+    description:
+      "100만원 펀드를 직접 운용합니다. 모든 편입에는 킬조건이 있고, 종목당 최대 30% 제한으로 리스크를 관리합니다.",
   },
   {
     icon: Lightbulb,
-    title: "지속적 학습",
-    description: "끊임없이 변화하는 금융 시장에 대해 학습합니다.",
+    title: "기록과 검증",
+    description:
+      "투자 판단 저널에 종목·방향·확신도를 기록하면, 3개월 후 실제 주가와 비교해 자동 채점됩니다. 나만의 투자 성적표입니다.",
   },
 ];
 
 const fields = [
-  { icon: BarChart3, title: "주식", description: "국내·해외 주식 분석 및 투자" },
-  { icon: BookOpen, title: "경제·금융", description: "거시경제 및 금융시장 분석" },
-  { icon: Eye, title: "리서치", description: "산업·기업 분석 리포트 작성" },
+  {
+    icon: BarChart3,
+    title: "기업분석 리서치",
+    description: "재무제표·산업분석·밸류에이션을 통한 본질적 가치 산출",
+  },
+  {
+    icon: Cpu,
+    title: "AI 워크벤치",
+    description: "NEXUS 기반 밸류에이션 모델링, AI 가정 슬라이더 직접 수정",
+  },
+  {
+    icon: BookOpen,
+    title: "투자심의(IC)",
+    description: "스톡피치 발표 + CRITIC 반론 + 포트폴리오 리뷰 및 투표",
+  },
 ];
 
 export default function AboutPage() {
@@ -39,17 +54,49 @@ export default function AboutPage() {
             About Us
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            금은동을 소개합니다
+            CUFA를 소개합니다
           </h1>
           <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
-            금은동은 2010년에 설립된 충북대학교 금융투자 동아리입니다. 금융
-            시장에 대한 열정을 가진 학생들이 모여 함께 공부하고 성장합니다.
+            CUFA는 충북대학교 가치투자학회입니다. AI 리서치 워크스테이션
+            &ldquo;NEXUS&rdquo;를 기반으로, 전국 어디에도 없는 방식으로 투자
+            리서치를 수행합니다.
           </p>
         </div>
       </section>
 
-      {/* Mission & Vision */}
+      {/* What makes CUFA different */}
       <section className="py-16 px-4 bg-navy-900/30">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-white text-center mb-12">
+            CUFA는 뭐가 다른가
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {[
+              { before: "데이터 수집 1주일", after: "AI 30분 수집, 핵심만 집중" },
+              { before: "엑셀 밸류에이션 1주일", after: "AI 초벌 1시간, 가정 뜯어보기" },
+              { before: "선배 1명 피드백", after: "AI 반론 + 크로스 리뷰 + 실시간 토론" },
+              { before: "AI 결과 복붙", after: "분석 로그 vs 최종 리포트 diff 비교 평가" },
+            ].map((item) => (
+              <div
+                key={item.before}
+                className="bg-navy-900/50 border border-white/5 rounded-xl p-6 flex items-center gap-4"
+              >
+                <div className="flex-1">
+                  <p className="text-gray-500 text-sm line-through mb-1">
+                    {item.before}
+                  </p>
+                  <p className="text-gold-400 font-medium text-sm">
+                    {item.after}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="bg-navy-900/50 border border-white/5 rounded-xl p-8">
             <div className="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center mb-5">
@@ -57,8 +104,8 @@ export default function AboutPage() {
             </div>
             <h3 className="text-white text-xl font-bold mb-4">Mission</h3>
             <p className="text-gray-400 leading-relaxed">
-              금융 지식의 대중화와 실전 투자 교육을 통해 충북대학교 학생들의
-              금융 역량을 강화하고, 미래 금융 인재를 양성합니다.
+              AI 시대에 투자 리서치 방법론을 재정의하고, 독자적 분석 역량을
+              갖춘 투자 인재를 양성합니다.
             </p>
           </div>
           <div className="bg-navy-900/50 border border-white/5 rounded-xl p-8">
@@ -67,15 +114,15 @@ export default function AboutPage() {
             </div>
             <h3 className="text-white text-xl font-bold mb-4">Vision</h3>
             <p className="text-gray-400 leading-relaxed">
-              충청권 최고의 대학생 금융투자 동아리로 성장하여, 졸업 후에도
-              지속적으로 연결되는 금융 네트워크를 구축합니다.
+              전국 65개 학회가 엑셀과 PDF로 리서치할 때, AI 리서치
+              워크스테이션 위에서 리서치하는 유일한 학회.
             </p>
           </div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 bg-navy-900/30">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-12">
             핵심 가치
@@ -102,7 +149,7 @@ export default function AboutPage() {
       </section>
 
       {/* Fields */}
-      <section className="py-16 px-4 bg-navy-900/30">
+      <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold text-white text-center mb-12">
             활동 분야
@@ -120,6 +167,38 @@ export default function AboutPage() {
                   <h3 className="text-white font-semibold mb-1">{f.title}</h3>
                   <p className="text-gray-400 text-sm">{f.description}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What you get */}
+      <section className="py-16 px-4 bg-navy-900/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-bold text-white mb-6">
+            한 학기 뒤 여러분이 얻는 것
+          </h2>
+          <p className="text-gray-400 leading-relaxed mb-10 max-w-2xl mx-auto">
+            학기가 끝나면 &ldquo;15분 스톡 피치&rdquo;를 할 수 있는 사람이
+            됩니다. 증권사 면접에서 산업/재무/밸류/리스크/킬조건까지 15분간
+            논리적으로 답할 수 있습니다.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+            {[
+              { label: "기업분석", desc: "재무제표와 산업을 이해하고 본질적 가치 산출" },
+              { label: "투자 의사결정", desc: "실시간 반론 대응 및 실전 펀드 운용" },
+              { label: "AI 리서치 방법론", desc: "AI의 가정을 직접 수정 및 검증" },
+              { label: "기록과 검증", desc: "투자 판단 저널 기록 → 자동 채점 성적표" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="bg-navy-900/50 border border-white/5 rounded-lg p-5 text-left"
+              >
+                <p className="text-gold-500 font-semibold text-sm mb-1">
+                  {item.label}
+                </p>
+                <p className="text-gray-400 text-sm">{item.desc}</p>
               </div>
             ))}
           </div>

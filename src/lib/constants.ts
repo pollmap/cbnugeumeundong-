@@ -1,7 +1,7 @@
-export const SITE_NAME = "금은동";
-export const SITE_FULL_NAME = "충북대학교 금융투자 동아리 금은동";
+export const SITE_NAME = "CUFA";
+export const SITE_FULL_NAME = "충북대학교 가치투자학회 CUFA";
 export const SITE_DESCRIPTION =
-  "충북대학교 금융투자 동아리 금은동 - Invest in yourself";
+  "충북대학교 가치투자학회 CUFA - AI가 바꾸는 투자 리서치";
 
 interface NavItem {
   label: string;
@@ -12,8 +12,8 @@ interface NavItem {
 export const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "People", href: "/people" },
   { label: "Activity", href: "/activity" },
+  { label: "Research", href: "/research" },
   {
     label: "Join Us",
     href: "/join-us",
@@ -24,38 +24,23 @@ export const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-export const SOCIAL_LINKS = {
-  instagram: "https://www.instagram.com/cbnu_geumeundong/",
-  naverCafe: "https://cafe.naver.com/cbnugeumeundong",
-};
-
 export const ACTIVITIES = [
   {
-    title: "주식 투자 스터디",
+    title: "AI 리서치 워크스테이션",
     description:
-      "기본적 분석과 기술적 분석을 통한 실전 주식 투자 스터디를 진행합니다.",
+      "NEXUS 플랫폼 위에서 AI가 데이터 수집부터 밸류에이션 초벌까지 보조합니다. 가정을 직접 수정하고 검증하는 독자적 분석을 수행합니다.",
     icon: "TrendingUp" as const,
   },
   {
-    title: "금융 세미나",
+    title: "투자심의 세션",
     description:
-      "금융 시장 트렌드와 경제 이슈에 대한 세미나를 정기적으로 개최합니다.",
+      "5주간 준비한 종목을 15분 스톡피치로 발표하고, AI 반론과 크로스 리뷰를 거쳐 편입/편출을 결정합니다.",
     icon: "BookOpen" as const,
   },
   {
-    title: "모의 투자 대회",
-    description: "학기별 모의 투자 대회를 통해 실전 투자 감각을 키웁니다.",
+    title: "100만원 실전 펀드",
+    description:
+      "실제 자금을 운용하며 킬조건 기반 리스크 관리와 투자 판단 저널을 통해 실전 투자 역량을 키웁니다.",
     icon: "Trophy" as const,
   },
-];
-
-export const MEMBERS = [
-  { name: "홍길동", role: "회장", generation: "15기", image: null },
-  { name: "김철수", role: "부회장", generation: "15기", image: null },
-  { name: "이영희", role: "총무", generation: "15기", image: null },
-  { name: "박민수", role: "운영진", generation: "15기", image: null },
-  { name: "정수진", role: "운영진", generation: "15기", image: null },
-  { name: "최준혁", role: "운영진", generation: "15기", image: null },
-  { name: "강지원", role: "부원", generation: "16기", image: null },
-  { name: "윤서연", role: "부원", generation: "16기", image: null },
 ];
