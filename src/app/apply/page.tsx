@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, FormEvent } from "react";
+import Link from "next/link";
 import { ArrowRight, Loader2, CheckCircle, XCircle, X } from "lucide-react";
 import Footer from "@/components/Footer";
 
@@ -19,6 +20,7 @@ interface FormData {
   isEnrolled: string;
   experience: string;
   motivation: string;
+  deepDive: string;
   industry1: string;
   industry2: string;
   company1: string;
@@ -36,6 +38,7 @@ const initial: FormData = {
   isEnrolled: "",
   experience: "",
   motivation: "",
+  deepDive: "",
   industry1: "",
   industry2: "",
   company1: "",
@@ -191,10 +194,16 @@ export default function ApplyPage() {
               setShowSuccess(false);
               setForm(initial);
             }}
-            className="w-full py-3 bg-white text-black font-semibold text-sm tracking-wider rounded hover:bg-gray-200 transition-colors"
+            className="w-full py-3 bg-white text-black font-semibold text-sm tracking-wider rounded hover:bg-gray-200 transition-colors mb-3"
           >
             확인
           </button>
+          <Link
+            href="/apply/check"
+            className="block text-center text-gray-500 text-xs hover:text-gray-300 transition-colors underline underline-offset-4"
+          >
+            접수 여부 다시 확인하기
+          </Link>
         </div>
       </Modal>
 
@@ -233,13 +242,21 @@ export default function ApplyPage() {
           <div className="text-gray-600 text-xs space-y-1 mb-4">
             <p>2학기 연속 참여 필수 / 휴학생 지원 불가</p>
           </div>
-          <div className="border border-white/10 rounded px-4 py-3 mb-12">
+          <div className="border border-white/10 rounded px-4 py-3 mb-4">
             <p className="text-gray-400 text-xs leading-relaxed">
               전형 절차: <span className="text-white">온라인 지원서 제출</span> → <span className="text-white">서류 심사</span> → <span className="text-white">면접</span> → <span className="text-white">최종 합격</span>
             </p>
             <p className="text-gray-600 text-xs mt-1">
               서류 합격자에 한해 면접 일정을 개별 안내합니다.
             </p>
+          </div>
+          <div className="mb-12">
+            <Link
+              href="/apply/check"
+              className="text-gray-600 text-xs hover:text-gray-400 transition-colors underline underline-offset-4"
+            >
+              이미 지원하셨나요? 접수 여부 확인하기
+            </Link>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-8">
@@ -466,6 +483,23 @@ export default function ApplyPage() {
                     <span className="text-gray-700"> / {MOTIVATION_MIN}자</span>
                   </span>
                 </div>
+              </div>
+
+              <div>
+                <label className={labelClass}>
+                  본인이 한 가장 큰 덕질은?{requiredMark}
+                  <span className="text-gray-600 text-xs ml-2">
+                    (분야 무관, 자유롭게)
+                  </span>
+                </label>
+                <textarea
+                  required
+                  value={form.deepDive}
+                  onChange={(e) => set("deepDive", e.target.value)}
+                  placeholder="투자, 게임, 음악, 운동, 덕질 등 어떤 분야든 좋습니다. 본인이 가장 깊게 파본 경험을 자유롭게 적어주세요."
+                  rows={4}
+                  className={`${inputClass} resize-none`}
+                />
               </div>
             </div>
 

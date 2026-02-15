@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
       isEnrolled,
       experience,
       motivation,
+      deepDive,
       industry1,
       industry2,
       company1,
@@ -45,6 +46,7 @@ export async function POST(request: NextRequest) {
       !isEnrolled ||
       !experience ||
       !motivation?.trim() ||
+      !deepDive?.trim() ||
       !industry1?.trim() ||
       !industry2?.trim() ||
       !company1?.trim() ||
@@ -100,6 +102,7 @@ export async function POST(request: NextRequest) {
       is_enrolled: isEnrolled,
       experience,
       motivation: motivation.trim(),
+      deep_dive: deepDive.trim(),
       industry1: industry1.trim(),
       industry2: industry2.trim(),
       company1: company1.trim(),
