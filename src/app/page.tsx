@@ -43,16 +43,16 @@ export default function Home() {
                 About Us
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                금은동을 소개합니다
+                CUFA를 소개합니다
               </h2>
               <p className="text-gray-400 leading-relaxed mb-4">
-                금은동은 충북대학교 학생들이 모여 금융 시장을 공부하고, 실전
-                투자 경험을 쌓으며, 미래의 금융 전문가로 성장하기 위해 설립된
-                금융투자 동아리입니다.
+                CUFA는 충북대학교 가치투자학회입니다. 전국 65개 학회가 엑셀과
+                PDF로 리서치할 때, CUFA는 AI 리서치 워크스테이션 위에서
+                리서치합니다.
               </p>
               <p className="text-gray-400 leading-relaxed mb-8">
-                정기적인 스터디, 세미나, 모의 투자 대회 등 다양한 활동을 통해
-                금융 지식을 쌓고, 실전 투자 감각을 키울 수 있습니다.
+                단순히 AI를 쓰는 게 아닙니다. AI의 가정을 직접 수정하고
+                검증하는 방법론의 내재화가 우리의 차별점입니다.
               </p>
               <Link
                 href="/about"
@@ -66,10 +66,10 @@ export default function Home() {
               <div className="aspect-video bg-navy-800 rounded-xl border border-white/5 flex items-center justify-center">
                 <div className="text-center">
                   <p className="text-6xl font-bold text-gold-500 mb-2">
-                    금은동
+                    CUFA
                   </p>
                   <p className="text-gray-500 text-sm">
-                    충북대학교 금융투자 동아리
+                    충북대학교 가치투자학회
                   </p>
                 </div>
               </div>
@@ -85,7 +85,7 @@ export default function Home() {
             함께 성장할 준비가 되셨나요?
           </h2>
           <p className="text-gray-400 text-lg mb-10">
-            금은동과 함께 금융 전문가로의 첫 걸음을 내딛어보세요.
+            CUFA와 함께 AI 시대의 투자 전문가로 첫 걸음을 내딛어보세요.
           </p>
           <Link
             href="/join-us/how-to-apply"

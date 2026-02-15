@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 const downloadFiles = [
   {
     label: "한글 파일 (.hwp)",
-    filename: "금은동_지원서.hwp",
+    filename: "CUFA_지원서.hwp",
     href: "/files/application-form.hwp",
     icon: "HWP",
     color: "bg-blue-500/10 text-blue-400 border-blue-500/20",
   },
   {
     label: "워드 파일 (.docx)",
-    filename: "금은동_지원서.docx",
+    filename: "CUFA_지원서.docx",
     href: "/files/application-form.docx",
     icon: "W",
     color: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
@@ -109,7 +109,7 @@ export default function HowToApplyPage() {
                   </li>
                   <li>- 서류 심사 결과는 개별 연락드립니다.</li>
                   <li>
-                    - 문의사항은 인스타그램 DM 또는 이메일로 연락해주세요.
+                    - 문의사항은 이메일로 연락해주세요.
                   </li>
                 </ul>
               </div>

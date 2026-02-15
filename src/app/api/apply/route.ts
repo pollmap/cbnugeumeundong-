@@ -98,13 +98,24 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Validate Supabase connection
     const supabaseAdmin = await getSupabaseAdmin();
+    if (!supabaseAdmin) {
+      console.error("Supabase client is not configured");
+      return NextResponse.json(
+        {
+          success: false,
+          message: "서버 설정 오류입니다. 관리자에게 문의해주세요.",
+        },
+        { status: 500 }
+      );
+    }
 
     // Upload file to Supabase Storage
     let fileUrl: string | null = null;
     let fileName: string | null = null;
 
-    if (file && supabaseAdmin) {
+    if (file) {
       fileName = file.name;
       const safeFileName = sanitizeFileName(file.name);
       const fileBuffer = Buffer.from(await file.arrayBuffer());
@@ -118,35 +129,45 @@ export async function POST(request: NextRequest) {
 
       if (uploadError) {
         console.error("File upload error:", uploadError);
-      } else {
-        const { data: urlData } = supabaseAdmin.storage
-          .from("applications")
-          .getPublicUrl(filePath);
-        fileUrl = urlData.publicUrl;
+        return NextResponse.json(
+          {
+            success: false,
+            message: "파일 업로드에 실패했습니다. 다시 시도해주세요.",
+          },
+          { status: 500 }
+        );
       }
-    } else if (file) {
-      fileName = file.name;
+
+      const { data: urlData } = supabaseAdmin.storage
+        .from("applications")
+        .getPublicUrl(filePath);
+      fileUrl = urlData.publicUrl;
     }
 
     // Save to Supabase DB
-    if (supabaseAdmin) {
-      const { error: dbError } = await supabaseAdmin
-        .from("applications")
-        .insert({
-          name,
-          student_id: studentId,
-          email,
-          phone,
-          file_url: fileUrl,
-          file_name: fileName,
-        });
+    const { error: dbError } = await supabaseAdmin
+      .from("applications")
+      .insert({
+        name,
+        student_id: studentId,
+        email,
+        phone,
+        file_url: fileUrl,
+        file_name: fileName,
+      });
 
-      if (dbError) {
-        console.error("DB insert error:", dbError);
-      }
+    if (dbError) {
+      console.error("DB insert error:", dbError);
+      return NextResponse.json(
+        {
+          success: false,
+          message: "지원서 저장에 실패했습니다. 다시 시도해주세요.",
+        },
+        { status: 500 }
+      );
     }
 
-    // Escape user inputs for HTML emails to prevent XSS
+    // Escape user inputs for HTML emails
     const safeName = escapeHtml(name);
     const safeStudentId = escapeHtml(studentId);
     const safeEmail = escapeHtml(email);
@@ -156,20 +177,21 @@ export async function POST(request: NextRequest) {
     // Send emails via Resend
     const resend = await getResend();
     const clubEmail = process.env.CLUB_EMAIL || "onboarding@resend.dev";
+    let emailWarning = false;
 
     if (resend) {
       // Confirmation email to applicant
       try {
         await resend.emails.send({
-          from: `금은동 <${clubEmail}>`,
+          from: `CUFA <${clubEmail}>`,
           to: [email],
-          subject: "금은동 지원서 접수 확인",
+          subject: "CUFA 지원서 접수 확인",
           html: `
             <div style="font-family: 'Noto Sans KR', sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
               <div style="background: #0f1629; border-radius: 12px; padding: 40px; color: #e5e7eb;">
-                <h1 style="color: #d4af37; margin-bottom: 20px; font-size: 24px;">금은동에 지원해주셔서 감사합니다!</h1>
+                <h1 style="color: #d4af37; margin-bottom: 20px; font-size: 24px;">CUFA에 지원해주셔서 감사합니다!</h1>
                 <p style="margin-bottom: 16px; line-height: 1.6;">안녕하세요, <strong style="color: white;">${safeName}</strong>님!</p>
-                <p style="margin-bottom: 24px; line-height: 1.6;">금은동에 지원해주셔서 진심으로 감사드립니다. 지원서가 정상적으로 접수되었습니다.</p>
+                <p style="margin-bottom: 24px; line-height: 1.6;">충북대학교 가치투자학회 CUFA에 지원해주셔서 진심으로 감사드립니다. 지원서가 정상적으로 접수되었습니다.</p>
                 <div style="background: #1a2240; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
                   <p style="margin: 0 0 8px; color: #9ca3af; font-size: 14px;">접수 정보</p>
                   <p style="margin: 4px 0; color: white;">이름: ${safeName}</p>
@@ -178,13 +200,14 @@ export async function POST(request: NextRequest) {
                 </div>
                 <p style="line-height: 1.6;">서류 심사 후 결과를 개별 연락드리겠습니다.</p>
                 <hr style="border: none; border-top: 1px solid #243056; margin: 24px 0;" />
-                <p style="color: #6b7280; font-size: 13px;">충북대학교 금융투자 동아리 금은동</p>
+                <p style="color: #6b7280; font-size: 13px;">충북대학교 가치투자학회 CUFA</p>
               </div>
             </div>
           `,
         });
       } catch (emailError) {
         console.error("Applicant email error:", emailError);
+        emailWarning = true;
       }
 
       // Notification to admins
@@ -194,9 +217,9 @@ export async function POST(request: NextRequest) {
       if (adminEmails && adminEmails.length > 0) {
         try {
           await resend.emails.send({
-            from: `금은동 시스템 <${clubEmail}>`,
+            from: `CUFA 시스템 <${clubEmail}>`,
             to: adminEmails,
-            subject: `[금은동] 새로운 지원서 접수 - ${safeName}`,
+            subject: `[CUFA] 새로운 지원서 접수 - ${safeName}`,
             html: `
               <div style="font-family: 'Noto Sans KR', sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px;">
                 <div style="background: #0f1629; border-radius: 12px; padding: 40px; color: #e5e7eb;">
@@ -210,20 +233,25 @@ export async function POST(request: NextRequest) {
                     ${fileUrl ? `<p style="margin: 4px 0;"><a href="${escapeHtml(fileUrl)}" style="color: #d4af37;">파일 다운로드</a></p>` : ""}
                   </div>
                   <hr style="border: none; border-top: 1px solid #243056; margin: 24px 0;" />
-                  <p style="color: #6b7280; font-size: 13px;">금은동 지원 관리 시스템</p>
+                  <p style="color: #6b7280; font-size: 13px;">CUFA 지원 관리 시스템</p>
                 </div>
               </div>
             `,
           });
         } catch (adminEmailError) {
           console.error("Admin email error:", adminEmailError);
+          emailWarning = true;
         }
       }
+    } else {
+      emailWarning = true;
     }
 
     return NextResponse.json({
       success: true,
-      message: "지원서가 성공적으로 제출되었습니다.",
+      message: emailWarning
+        ? "지원서가 제출되었습니다. (확인 이메일 발송에 문제가 있을 수 있습니다)"
+        : "지원서가 성공적으로 제출되었습니다.",
     });
   } catch (error) {
     console.error("Application submit error:", error);

@@ -16,10 +16,10 @@ export default function JoinUsPage() {
             Join Us
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            금은동에 합류하세요
+            CUFA에 합류하세요
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            금융에 관심 있는 충북대학교 학생이라면 누구나 지원할 수 있습니다.
+            투자에 관심 있는 충북대학교 학생이라면 누구나 지원할 수 있습니다.
           </p>
         </div>
       </section>
