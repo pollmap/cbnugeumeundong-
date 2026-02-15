@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { ArrowRight, ArrowDown, Terminal } from "lucide-react";
 import TypeWriter from "@/components/TypeWriter";
 import Footer from "@/components/Footer";
-import { GOOGLE_FORM_URL } from "@/lib/constants";
+import { APPLY_URL } from "@/lib/constants";
 
 const BackgroundMesh = dynamic(() => import("@/components/BackgroundMesh"), {
   ssr: false,
@@ -89,7 +89,7 @@ const PANELS = [
 ];
 
 const TIMELINE = [
-  { label: "서류 접수", desc: "구글폼으로 지원서 제출" },
+  { label: "서류 접수", desc: "온라인 지원서 제출" },
   { label: "서류 심사", desc: "지원 동기 및 적합성 평가" },
   { label: "면접", desc: "투자 관심도 및 학습 의지 확인" },
   { label: "최종 합격", desc: "개별 연락" },
@@ -125,8 +125,8 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-6">
           <a
-            href={GOOGLE_FORM_URL}
-            {...(GOOGLE_FORM_URL !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            href={APPLY_URL}
+
             className="group flex items-center gap-2 px-8 py-3 border border-white/30 text-white text-sm tracking-wider rounded hover:bg-white/5 transition-all"
           >
             APPLY
@@ -333,8 +333,8 @@ export default function Home() {
           {/* CTA */}
           <FadeIn>
             <a
-              href={GOOGLE_FORM_URL}
-              {...(GOOGLE_FORM_URL !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              href={APPLY_URL}
+  
               className="group inline-flex items-center gap-2 px-8 py-3 border border-white/30 text-white text-sm tracking-wider rounded hover:bg-white/5 transition-all"
             >
               APPLY NOW

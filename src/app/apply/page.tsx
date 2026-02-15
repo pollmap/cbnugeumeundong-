@@ -1,0 +1,369 @@
+"use client";
+
+import { useState, FormEvent } from "react";
+import { ArrowRight, Loader2, CheckCircle } from "lucide-react";
+import Footer from "@/components/Footer";
+
+const GRADES = ["1학년", "2학년", "3학년", "4학년"] as const;
+const EXPERIENCE = ["없음", "1년 미만", "1~3년", "3년 이상"] as const;
+
+interface FormData {
+  name: string;
+  studentId: string;
+  department: string;
+  grade: string;
+  phone: string;
+  email: string;
+  canCommit: string;
+  isEnrolled: string;
+  experience: string;
+  motivation: string;
+  interests: string;
+}
+
+const initial: FormData = {
+  name: "",
+  studentId: "",
+  department: "",
+  grade: "",
+  phone: "",
+  email: "",
+  canCommit: "",
+  isEnrolled: "",
+  experience: "",
+  motivation: "",
+  interests: "",
+};
+
+function formatPhone(v: string) {
+  const d = v.replace(/\D/g, "");
+  if (d.length <= 3) return d;
+  if (d.length <= 7) return `${d.slice(0, 3)}-${d.slice(3)}`;
+  return `${d.slice(0, 3)}-${d.slice(3, 7)}-${d.slice(7, 11)}`;
+}
+
+export default function ApplyPage() {
+  const [form, setForm] = useState<FormData>(initial);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  function set(key: keyof FormData, value: string) {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  }
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setStatus("submitting");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+        setErrorMsg(data.message || "제출 중 오류가 발생했습니다.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("서버에 연결할 수 없습니다.");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="min-h-screen pt-16 flex items-center justify-center px-6">
+        <div className="text-center max-w-md">
+          <CheckCircle className="w-16 h-16 text-white mx-auto mb-6" />
+          <h2 className="font-display text-white text-3xl tracking-wider mb-4">
+            SUBMITTED
+          </h2>
+          <p className="text-gray-500 text-sm mb-2">
+            지원서가 정상적으로 접수되었습니다.
+          </p>
+          <p className="text-gray-600 text-sm">
+            서류 심사 후 개별 연락드리겠습니다.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const inputClass =
+    "w-full bg-dark-800/50 border border-white/10 rounded px-4 py-3 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-colors";
+  const labelClass = "block text-white text-sm mb-2";
+  const requiredMark = <span className="text-gray-500 ml-1">*</span>;
+
+  return (
+    <div className="min-h-screen pt-16">
+      <section className="py-24 px-6">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-gray-600 text-xs tracking-[0.4em] uppercase mb-4">
+            Application
+          </p>
+          <h1 className="font-display text-white text-4xl sm:text-5xl tracking-wider mb-4">
+            APPLY
+          </h1>
+          <p className="text-gray-500 text-sm mb-2">
+            충북대학교 가치투자학회 CUFA 신규 회원 모집
+          </p>
+          <div className="text-gray-600 text-xs space-y-1 mb-12">
+            <p>2학기 연속 참여 필수 / 휴학생 지원 불가</p>
+          </div>
+
+          {status === "error" && (
+            <div className="border border-white/10 rounded p-4 mb-8">
+              <p className="text-gray-400 text-sm">{errorMsg}</p>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* 인적사항 */}
+            <div className="space-y-5">
+              <p className="text-gray-600 text-xs tracking-widest uppercase">
+                Personal Info
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className={labelClass}>이름{requiredMark}</label>
+                  <input
+                    required
+                    type="text"
+                    value={form.name}
+                    onChange={(e) => set("name", e.target.value)}
+                    placeholder="홍길동"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className={labelClass}>학번{requiredMark}</label>
+                  <input
+                    required
+                    type="text"
+                    value={form.studentId}
+                    onChange={(e) => set("studentId", e.target.value.replace(/\D/g, ""))}
+                    placeholder="2024000000"
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className={labelClass}>학과{requiredMark}</label>
+                  <input
+                    required
+                    type="text"
+                    value={form.department}
+                    onChange={(e) => set("department", e.target.value)}
+                    placeholder="경영학과"
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className={labelClass}>학년{requiredMark}</label>
+                  <select
+                    required
+                    value={form.grade}
+                    onChange={(e) => set("grade", e.target.value)}
+                    className={`${inputClass} ${!form.grade ? "text-gray-700" : ""}`}
+                  >
+                    <option value="" disabled>
+                      선택
+                    </option>
+                    {GRADES.map((g) => (
+                      <option key={g} value={g}>
+                        {g}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className={labelClass}>연락처{requiredMark}</label>
+                  <input
+                    required
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => set("phone", formatPhone(e.target.value))}
+                    placeholder="010-1234-5678"
+                    maxLength={13}
+                    className={inputClass}
+                  />
+                </div>
+                <div>
+                  <label className={labelClass}>이메일{requiredMark}</label>
+                  <input
+                    required
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => set("email", e.target.value)}
+                    placeholder="example@cbnu.ac.kr"
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 자격 확인 */}
+            <div className="space-y-5">
+              <p className="text-gray-600 text-xs tracking-widest uppercase">
+                Eligibility
+              </p>
+
+              <div>
+                <label className={labelClass}>
+                  2학기 연속 참여가 가능합니까?{requiredMark}
+                </label>
+                <div className="flex gap-4">
+                  {["예", "아니오"].map((opt) => (
+                    <label
+                      key={opt}
+                      className={`flex-1 text-center py-3 border rounded text-sm cursor-pointer transition-colors ${
+                        form.canCommit === opt
+                          ? "border-white/40 text-white bg-white/5"
+                          : "border-white/10 text-gray-600 hover:border-white/20"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="canCommit"
+                        value={opt}
+                        checked={form.canCommit === opt}
+                        onChange={(e) => set("canCommit", e.target.value)}
+                        className="sr-only"
+                        required
+                      />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className={labelClass}>
+                  현재 재학 중입니까?{requiredMark}
+                  <span className="text-gray-600 text-xs ml-2">
+                    (휴학생 지원 불가)
+                  </span>
+                </label>
+                <div className="flex gap-4">
+                  {["예, 재학 중입니다", "아니오"].map((opt) => (
+                    <label
+                      key={opt}
+                      className={`flex-1 text-center py-3 border rounded text-sm cursor-pointer transition-colors ${
+                        form.isEnrolled === opt
+                          ? "border-white/40 text-white bg-white/5"
+                          : "border-white/10 text-gray-600 hover:border-white/20"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="isEnrolled"
+                        value={opt}
+                        checked={form.isEnrolled === opt}
+                        onChange={(e) => set("isEnrolled", e.target.value)}
+                        className="sr-only"
+                        required
+                      />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className={labelClass}>투자 경험{requiredMark}</label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {EXPERIENCE.map((opt) => (
+                    <label
+                      key={opt}
+                      className={`text-center py-3 border rounded text-sm cursor-pointer transition-colors ${
+                        form.experience === opt
+                          ? "border-white/40 text-white bg-white/5"
+                          : "border-white/10 text-gray-600 hover:border-white/20"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="experience"
+                        value={opt}
+                        checked={form.experience === opt}
+                        onChange={(e) => set("experience", e.target.value)}
+                        className="sr-only"
+                        required
+                      />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 서술 */}
+            <div className="space-y-5">
+              <p className="text-gray-600 text-xs tracking-widest uppercase">
+                Motivation
+              </p>
+
+              <div>
+                <label className={labelClass}>지원 동기{requiredMark}</label>
+                <textarea
+                  required
+                  value={form.motivation}
+                  onChange={(e) => set("motivation", e.target.value)}
+                  placeholder="간단하게 작성해주세요."
+                  rows={4}
+                  className={`${inputClass} resize-none`}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass}>
+                  관심 산업 / 종목
+                  <span className="text-gray-700 text-xs ml-2">(선택)</span>
+                </label>
+                <textarea
+                  value={form.interests}
+                  onChange={(e) => set("interests", e.target.value)}
+                  placeholder="자유롭게 적어주세요."
+                  rows={3}
+                  className={`${inputClass} resize-none`}
+                />
+              </div>
+            </div>
+
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="w-full py-4 bg-white text-black font-semibold text-sm tracking-wider rounded hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {status === "submitting" ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  제출 중...
+                </>
+              ) : (
+                <>
+                  제출하기
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}
