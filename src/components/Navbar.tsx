@@ -30,11 +30,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/images/cufa-logo.svg"
+              src="/images/cufa-icon-192.png"
               alt="CUFA"
-              width={40}
-              height={45}
-              className="h-9 w-auto"
+              width={36}
+              height={36}
+              className="h-9 w-9 invert"
               priority
             />
             <span className="font-display text-white text-lg tracking-[0.15em] hidden sm:inline">
