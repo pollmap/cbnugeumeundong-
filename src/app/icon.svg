@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="64" fill="#0A0A0F"/>
+  <!-- Outer ring -->
+  <circle cx="256" cy="256" r="230" fill="none" stroke="white" stroke-width="12"/>
+  <circle cx="256" cy="256" r="215" fill="none" stroke="white" stroke-width="3"/>
+  <!-- Inner ring -->
+  <circle cx="256" cy="256" r="185" fill="none" stroke="white" stroke-width="6"/>
+
+  <!-- Bull head (simplified for small render) -->
+  <g stroke="white" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Horns -->
+    <path d="M 200,165 C 185,135 155,100 130,78 C 120,70 115,65 120,58 C 125,52 135,58 142,66 C 162,85 185,120 198,155" stroke-width="10"/>
+    <path d="M 312,165 C 327,135 357,100 382,78 C 392,70 397,65 392,58 C 387,52 377,58 370,66 C 350,85 327,120 314,155" stroke-width="10"/>
+
+    <!-- Ears -->
+    <path d="M 190,178 C 172,168 158,172 160,185 C 162,196 172,196 183,188" stroke-width="7"/>
+    <path d="M 322,178 C 340,168 354,172 352,185 C 350,196 340,196 329,188" stroke-width="7"/>
+
+    <!-- Head outline -->
+    <path d="M 190,178 C 185,195 183,220 187,245 C 190,265 200,290 210,310 C 220,328 236,348 256,368 C 276,348 292,328 302,310 C 312,290 322,265 325,245 C 329,220 327,195 322,178 C 312,168 286,158 256,155 C 226,158 200,168 190,178" stroke-width="7"/>
+
+    <!-- Eyes -->
+    <ellipse cx="224" cy="218" rx="16" ry="11" stroke-width="6"/>
+    <circle cx="224" cy="218" r="5" fill="white"/>
+    <ellipse cx="288" cy="218" rx="16" ry="11" stroke-width="6"/>
+    <circle cx="288" cy="218" r="5" fill="white"/>
+
+    <!-- Snout -->
+    <path d="M 222,298 C 218,308 220,325 232,332 C 242,337 252,338 256,338 C 260,338 270,337 280,332 C 292,325 294,308 290,298 C 280,293 266,290 256,290 C 246,290 232,293 222,298" stroke-width="6"/>
+
+    <!-- Nostrils -->
+    <ellipse cx="240" cy="312" rx="8" ry="6" stroke-width="5"/>
+    <ellipse cx="272" cy="312" rx="8" ry="6" stroke-width="5"/>
+  </g>
+
+  <!-- CUFA text -->
+  <text x="256" y="430" text-anchor="middle" fill="white" font-family="'Arial Black',sans-serif" font-size="52" font-weight="900" letter-spacing="10">CUFA</text>
+</svg>
