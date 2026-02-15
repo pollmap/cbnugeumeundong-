@@ -105,7 +105,10 @@ export default function Home() {
         id="hero"
         className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 text-center"
       >
-        <h1 className="font-display text-white text-6xl sm:text-8xl lg:text-[120px] tracking-[0.4em] sm:tracking-[0.5em] leading-none mb-6">
+        <p className="text-gray-600 text-xs sm:text-sm tracking-[0.3em] uppercase mb-4">
+          Chungbuk University Financial Analysis
+        </p>
+        <h1 className="font-display text-white text-6xl sm:text-8xl lg:text-[120px] tracking-[0.4em] sm:tracking-[0.5em] leading-none mb-4">
           CUFA
         </h1>
         <p className="text-gray-500 text-sm sm:text-base tracking-[0.3em] uppercase mb-12">
