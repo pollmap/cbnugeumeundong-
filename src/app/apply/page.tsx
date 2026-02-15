@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, FormEvent } from "react";
-import { ArrowRight, Loader2, CheckCircle } from "lucide-react";
+import { useState, useEffect, FormEvent } from "react";
+import { ArrowRight, Loader2, CheckCircle, XCircle, X } from "lucide-react";
 import Footer from "@/components/Footer";
 
 const GRADES = ["1학년", "2학년", "3학년", "4학년"] as const;
@@ -49,35 +49,85 @@ function formatPhone(v: string) {
   return `${d.slice(0, 3)}-${d.slice(3, 7)}-${d.slice(7, 11)}`;
 }
 
+/* ── Modal Component ── */
+function Modal({
+  open,
+  onClose,
+  children,
+}: {
+  open: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}) {
+  useEffect(() => {
+    if (open) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  if (!open) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center px-4"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+      <div
+        className="relative bg-dark-900 border border-white/10 rounded-lg max-w-md w-full p-8 animate-in fade-in zoom-in-95 duration-200"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-600 hover:text-white transition-colors"
+          aria-label="닫기"
+        >
+          <X className="w-5 h-5" />
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 export default function ApplyPage() {
   const [form, setForm] = useState<FormData>(initial);
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [submitting, setSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   function set(key: keyof FormData, value: string) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+  function showErrorModal(msg: string) {
+    setErrorMsg(msg);
+    setShowError(true);
+  }
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setStatus("submitting");
-    setErrorMsg("");
+    setSubmitting(true);
 
+    // Client-side validation with specific reasons
     if (form.canCommit === "아니오") {
-      setStatus("error");
-      setErrorMsg("2학기 연속 참여가 불가능한 경우 지원할 수 없습니다.");
+      setSubmitting(false);
+      showErrorModal("2학기 연속 참여가 불가능한 경우 지원할 수 없습니다.");
       return;
     }
 
     if (form.isEnrolled === "아니오") {
-      setStatus("error");
-      setErrorMsg("현재 재학 중인 학생만 지원 가능합니다.");
+      setSubmitting(false);
+      showErrorModal("현재 재학 중인 학생만 지원 가능합니다.\n(휴학생은 지원 불가)");
       return;
     }
 
     if (form.motivation.length < MOTIVATION_MIN) {
-      setStatus("error");
-      setErrorMsg(`지원 동기는 ${MOTIVATION_MIN}자 이상 작성해주세요. (현재 ${form.motivation.length}자)`);
+      setSubmitting(false);
+      showErrorModal(
+        `지원 동기를 ${MOTIVATION_MIN}자 이상 작성해주세요.\n현재 ${form.motivation.length}자 / 최소 ${MOTIVATION_MIN}자`
+      );
       return;
     }
 
@@ -89,37 +139,16 @@ export default function ApplyPage() {
       });
       const data = await res.json();
       if (res.ok && data.success) {
-        setStatus("success");
+        setSubmitting(false);
+        setShowSuccess(true);
       } else {
-        setStatus("error");
-        setErrorMsg(data.message || "제출 중 오류가 발생했습니다.");
+        setSubmitting(false);
+        showErrorModal(data.message || "제출 중 오류가 발생했습니다.");
       }
     } catch {
-      setStatus("error");
-      setErrorMsg("서버에 연결할 수 없습니다.");
+      setSubmitting(false);
+      showErrorModal("서버에 연결할 수 없습니다.\n네트워크 연결을 확인해주세요.");
     }
-  }
-
-  if (status === "success") {
-    return (
-      <div className="min-h-screen pt-16 flex items-center justify-center px-6">
-        <div className="text-center max-w-md">
-          <CheckCircle className="w-16 h-16 text-white mx-auto mb-6" />
-          <h2 className="font-display text-white text-3xl tracking-wider mb-4">
-            SUBMITTED
-          </h2>
-          <p className="text-gray-500 text-sm mb-2">
-            지원서가 정상적으로 접수되었습니다.
-          </p>
-          <p className="text-gray-400 text-sm mb-4">
-            서류 심사 후 면접 대상자에게 개별 연락드리겠습니다.
-          </p>
-          <p className="text-gray-600 text-xs">
-            서류 합격 → 면접 → 최종 합격
-          </p>
-        </div>
-      </div>
-    );
   }
 
   const inputClass =
@@ -131,6 +160,65 @@ export default function ApplyPage() {
 
   return (
     <div className="min-h-screen pt-16">
+      {/* ── 제출 완료 팝업 ── */}
+      <Modal open={showSuccess} onClose={() => setShowSuccess(false)}>
+        <div className="text-center">
+          <CheckCircle className="w-14 h-14 text-emerald-400 mx-auto mb-5" />
+          <h2 className="font-display text-white text-2xl tracking-wider mb-3">
+            제출 완료
+          </h2>
+          <div className="space-y-2 mb-6">
+            <p className="text-gray-300 text-sm">
+              지원서가 정상적으로 접수되었습니다!
+            </p>
+            <p className="text-gray-400 text-sm">
+              서류 심사 후 면접 대상자에게 개별 연락드리겠습니다.
+            </p>
+          </div>
+          <div className="border border-white/10 rounded p-4 mb-6">
+            <p className="text-gray-500 text-xs mb-2">전형 절차</p>
+            <p className="text-white text-sm tracking-wide">
+              온라인 지원서 제출 → 서류 심사 → 면접 → 최종 합격
+            </p>
+          </div>
+          <div className="bg-dark-800/50 border border-white/5 rounded p-3 mb-6">
+            <p className="text-gray-500 text-xs">
+              지원자: <span className="text-gray-300">{form.name}</span> · <span className="text-gray-300">{form.department}</span>
+            </p>
+          </div>
+          <button
+            onClick={() => {
+              setShowSuccess(false);
+              setForm(initial);
+            }}
+            className="w-full py-3 bg-white text-black font-semibold text-sm tracking-wider rounded hover:bg-gray-200 transition-colors"
+          >
+            확인
+          </button>
+        </div>
+      </Modal>
+
+      {/* ── 제출 실패 팝업 ── */}
+      <Modal open={showError} onClose={() => setShowError(false)}>
+        <div className="text-center">
+          <XCircle className="w-14 h-14 text-red-400 mx-auto mb-5" />
+          <h2 className="font-display text-white text-2xl tracking-wider mb-3">
+            제출 불가
+          </h2>
+          <div className="border border-red-500/20 bg-red-500/5 rounded p-4 mb-6">
+            <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">
+              {errorMsg}
+            </p>
+          </div>
+          <button
+            onClick={() => setShowError(false)}
+            className="w-full py-3 bg-white text-black font-semibold text-sm tracking-wider rounded hover:bg-gray-200 transition-colors"
+          >
+            돌아가서 수정하기
+          </button>
+        </div>
+      </Modal>
+
       <section className="py-24 px-6">
         <div className="max-w-2xl mx-auto">
           <p className="text-gray-600 text-xs tracking-[0.4em] uppercase mb-4">
@@ -153,12 +241,6 @@ export default function ApplyPage() {
               서류 합격자에 한해 면접 일정을 개별 안내합니다.
             </p>
           </div>
-
-          {status === "error" && (
-            <div className="border border-white/10 rounded p-4 mb-8">
-              <p className="text-gray-400 text-sm">{errorMsg}</p>
-            </div>
-          )}
 
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* 인적사항 */}
@@ -451,10 +533,10 @@ export default function ApplyPage() {
             {/* Submit */}
             <button
               type="submit"
-              disabled={status === "submitting"}
+              disabled={submitting}
               className="w-full py-4 bg-white text-black font-semibold text-sm tracking-wider rounded hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              {status === "submitting" ? (
+              {submitting ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
                   제출 중...
