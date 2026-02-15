@@ -20,9 +20,9 @@ export default function ActivityCard({
   const Icon = iconMap[icon];
 
   return (
-    <div className="group relative bg-navy-900/50 border border-white/5 rounded-xl p-8 hover:border-gold-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/5">
-      <div className="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center mb-5 group-hover:bg-gold-500/20 transition-colors">
-        <Icon className="w-6 h-6 text-gold-500" />
+    <div className="group relative bg-dark-900 border border-white/5 rounded-xl p-8 hover:border-white/20 transition-all duration-300">
+      <div className="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-5 group-hover:bg-white/10 transition-colors">
+        <Icon className="w-6 h-6 text-white" />
       </div>
       <h3 className="text-white text-lg font-semibold mb-3">{title}</h3>
       <p className="text-gray-400 text-sm leading-relaxed">{description}</p>

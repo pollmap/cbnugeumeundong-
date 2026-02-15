@@ -156,7 +156,7 @@ export default function ApplicationForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-navy-900/50 border border-green-500/30 rounded-xl p-8 text-center">
+      <div className="bg-dark-900 border border-green-500/30 rounded-xl p-8 text-center">
         <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
         <h3 className="text-white text-xl font-bold mb-2">제출 완료!</h3>
         <p className="text-gray-400">{message}</p>
@@ -169,6 +169,8 @@ export default function ApplicationForm() {
       </div>
     );
   }
+
+  const inputBase = "w-full bg-dark-700 border rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/10 transition-colors";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -192,9 +194,9 @@ export default function ApplicationForm() {
             if (errors.name) setErrors({ ...errors, name: undefined });
           }}
           placeholder="홍길동"
-          className={`w-full bg-navy-800 border ${
+          className={`${inputBase} ${
             errors.name ? "border-red-500/50" : "border-white/10"
-          } rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/25 transition-colors`}
+          }`}
         />
         {errors.name && (
           <p className="text-red-400 text-xs mt-1.5">{errors.name}</p>
@@ -217,9 +219,9 @@ export default function ApplicationForm() {
               setErrors({ ...errors, studentId: undefined });
           }}
           placeholder="2024000000"
-          className={`w-full bg-navy-800 border ${
+          className={`${inputBase} ${
             errors.studentId ? "border-red-500/50" : "border-white/10"
-          } rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/25 transition-colors`}
+          }`}
         />
         {errors.studentId && (
           <p className="text-red-400 text-xs mt-1.5">{errors.studentId}</p>
@@ -239,9 +241,9 @@ export default function ApplicationForm() {
             if (errors.email) setErrors({ ...errors, email: undefined });
           }}
           placeholder="example@cbnu.ac.kr"
-          className={`w-full bg-navy-800 border ${
+          className={`${inputBase} ${
             errors.email ? "border-red-500/50" : "border-white/10"
-          } rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/25 transition-colors`}
+          }`}
         />
         {errors.email && (
           <p className="text-red-400 text-xs mt-1.5">{errors.email}</p>
@@ -263,9 +265,9 @@ export default function ApplicationForm() {
           }}
           placeholder="010-1234-5678"
           maxLength={13}
-          className={`w-full bg-navy-800 border ${
+          className={`${inputBase} ${
             errors.phone ? "border-red-500/50" : "border-white/10"
-          } rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/25 transition-colors`}
+          }`}
         />
         {errors.phone && (
           <p className="text-red-400 text-xs mt-1.5">{errors.phone}</p>
@@ -279,13 +281,13 @@ export default function ApplicationForm() {
         </label>
         <div
           onClick={() => fileInputRef.current?.click()}
-          className={`w-full bg-navy-800 border-2 border-dashed ${
+          className={`w-full bg-dark-700 border-2 border-dashed ${
             errors.file ? "border-red-500/50" : "border-white/10"
-          } rounded-lg px-4 py-8 text-center cursor-pointer hover:border-gold-500/30 transition-colors`}
+          } rounded-lg px-4 py-8 text-center cursor-pointer hover:border-white/20 transition-colors`}
         >
           <Upload className="w-8 h-8 text-gray-500 mx-auto mb-3" />
           {file ? (
-            <p className="text-gold-500 text-sm font-medium">{file.name}</p>
+            <p className="text-white text-sm font-medium">{file.name}</p>
           ) : (
             <>
               <p className="text-gray-400 text-sm">
@@ -313,7 +315,7 @@ export default function ApplicationForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full bg-gold-500 text-navy-950 font-semibold py-3.5 rounded-lg hover:bg-gold-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full bg-white text-black font-semibold py-3.5 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {status === "submitting" ? (
           <>

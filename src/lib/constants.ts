@@ -1,7 +1,7 @@
 export const SITE_NAME = "CUFA";
-export const SITE_FULL_NAME = "충북대학교 가치투자학회 CUFA";
+export const SITE_FULL_NAME = "충북대학교 금융분석학회 CUFA";
 export const SITE_DESCRIPTION =
-  "충북대학교 가치투자학회 CUFA - AI가 바꾸는 투자 리서치";
+  "충북대학교 금융분석학회 CUFA - AI 기반 금융 분석";
 
 interface NavItem {
   label: string;

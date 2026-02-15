@@ -12,12 +12,12 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-navy-950/90 backdrop-blur-md border-b border-white/5">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-dark-950/90 backdrop-blur-md border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-gold-500 text-2xl font-bold">{SITE_NAME}</span>
+            <span className="text-white text-2xl font-bold tracking-wider">{SITE_NAME}</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -34,23 +34,23 @@ export default function Navbar() {
                     href={item.href}
                     className={`px-4 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-1 ${
                       pathname.startsWith(item.href)
-                        ? "text-gold-500"
-                        : "text-gray-300 hover:text-gold-400"
+                        ? "text-white"
+                        : "text-gray-400 hover:text-white"
                     }`}
                   >
                     {item.label}
                     <ChevronDown className="w-3.5 h-3.5" />
                   </Link>
                   {dropdownOpen && (
-                    <div className="absolute top-full left-0 mt-1 w-48 bg-navy-900 border border-white/10 rounded-lg shadow-xl overflow-hidden">
+                    <div className="absolute top-full left-0 mt-1 w-48 bg-dark-800 border border-white/10 rounded-lg shadow-xl overflow-hidden">
                       {item.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
                           className={`block px-4 py-3 text-sm transition-colors ${
                             pathname === child.href
-                              ? "text-gold-500 bg-navy-800"
-                              : "text-gray-300 hover:text-gold-400 hover:bg-navy-800"
+                              ? "text-white bg-dark-700"
+                              : "text-gray-400 hover:text-white hover:bg-dark-700"
                           }`}
                         >
                           {child.label}
@@ -65,8 +65,8 @@ export default function Navbar() {
                   href={item.href}
                   className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                     pathname === item.href
-                      ? "text-gold-500"
-                      : "text-gray-300 hover:text-gold-400"
+                      ? "text-white"
+                      : "text-gray-400 hover:text-white"
                   }`}
                 >
                   {item.label}
@@ -77,7 +77,7 @@ export default function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden text-gray-300 hover:text-gold-500 transition-colors"
+            className="md:hidden text-gray-400 hover:text-white transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="메뉴 토글"
           >
@@ -88,7 +88,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-navy-900 border-t border-white/5">
+        <div className="md:hidden bg-dark-900 border-t border-white/5">
           <div className="px-4 py-3 space-y-1">
             {NAV_ITEMS.map((item) => (
               <div key={item.label}>
@@ -97,8 +97,8 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className={`block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     pathname === item.href
-                      ? "text-gold-500 bg-navy-800"
-                      : "text-gray-300 hover:text-gold-400 hover:bg-navy-800"
+                      ? "text-white bg-dark-700"
+                      : "text-gray-400 hover:text-white hover:bg-dark-700"
                   }`}
                 >
                   {item.label}
@@ -110,8 +110,8 @@ export default function Navbar() {
                     onClick={() => setMobileOpen(false)}
                     className={`block pl-8 pr-3 py-2 rounded-md text-sm transition-colors ${
                       pathname === child.href
-                        ? "text-gold-500 bg-navy-800"
-                        : "text-gray-400 hover:text-gold-400 hover:bg-navy-800"
+                        ? "text-white bg-dark-700"
+                        : "text-gray-500 hover:text-white hover:bg-dark-700"
                     }`}
                   >
                     {child.label}

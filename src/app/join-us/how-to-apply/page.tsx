@@ -12,14 +12,14 @@ const downloadFiles = [
     filename: "CUFA_지원서.hwp",
     href: "/files/application-form.hwp",
     icon: "HWP",
-    color: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    color: "bg-white/5 text-gray-300 border-white/10",
   },
   {
     label: "워드 파일 (.docx)",
     filename: "CUFA_지원서.docx",
     href: "/files/application-form.docx",
     icon: "W",
-    color: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
+    color: "bg-white/5 text-gray-300 border-white/10",
   },
 ];
 
@@ -29,7 +29,7 @@ export default function HowToApplyPage() {
       {/* Header */}
       <section className="pt-24 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">
+          <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">
             How to Apply
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
@@ -45,7 +45,7 @@ export default function HowToApplyPage() {
       <section className="py-12 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 bg-gold-500 text-navy-950 rounded-full flex items-center justify-center text-sm font-bold">
+            <div className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center text-sm font-bold">
               1
             </div>
             <h2 className="text-xl font-bold text-white">
@@ -59,7 +59,7 @@ export default function HowToApplyPage() {
                 key={file.href}
                 href={file.href}
                 download={file.filename}
-                className="group bg-navy-900/50 border border-white/5 rounded-xl p-6 flex items-center gap-4 hover:border-gold-500/30 transition-all duration-300"
+                className="group bg-dark-900 border border-white/5 rounded-xl p-6 flex items-center gap-4 hover:border-white/20 transition-all duration-300"
               >
                 <div
                   className={`w-14 h-14 rounded-lg border flex items-center justify-center shrink-0 ${file.color}`}
@@ -72,7 +72,7 @@ export default function HowToApplyPage() {
                     {file.filename}
                   </p>
                 </div>
-                <Download className="w-5 h-5 text-gray-500 group-hover:text-gold-500 transition-colors shrink-0" />
+                <Download className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors shrink-0" />
               </a>
             ))}
           </div>
@@ -80,16 +80,16 @@ export default function HowToApplyPage() {
       </section>
 
       {/* Step 2: Submit */}
-      <section className="py-12 px-4 bg-navy-900/30">
+      <section className="py-12 px-4 bg-dark-800">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 bg-gold-500 text-navy-950 rounded-full flex items-center justify-center text-sm font-bold">
+            <div className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center text-sm font-bold">
               2
             </div>
             <h2 className="text-xl font-bold text-white">지원서 제출하기</h2>
           </div>
 
-          <div className="bg-navy-900/50 border border-white/5 rounded-xl p-6 sm:p-8">
+          <div className="bg-dark-900 border border-white/5 rounded-xl p-6 sm:p-8">
             <ApplicationForm />
           </div>
         </div>
@@ -98,9 +98,9 @@ export default function HowToApplyPage() {
       {/* Notice */}
       <section className="py-12 px-4">
         <div className="max-w-3xl mx-auto">
-          <div className="bg-gold-500/5 border border-gold-500/20 rounded-xl p-6">
+          <div className="bg-dark-900 border border-white/10 rounded-xl p-6">
             <div className="flex items-start gap-3">
-              <FileText className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <FileText className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
               <div>
                 <h3 className="text-white font-semibold mb-2">안내사항</h3>
                 <ul className="text-gray-400 text-sm space-y-1.5">

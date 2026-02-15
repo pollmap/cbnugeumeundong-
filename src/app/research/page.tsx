@@ -31,7 +31,7 @@ const reports: Report[] = [
 function VerdictBadge({ verdict }: { verdict: "BUY" | "HOLD" | "SELL" }) {
   const styles = {
     BUY: "bg-signal-green/10 text-signal-green border-signal-green/20",
-    HOLD: "bg-gold-500/10 text-gold-400 border-gold-500/20",
+    HOLD: "bg-white/5 text-gray-300 border-white/20",
     SELL: "bg-signal-red/10 text-signal-red border-signal-red/20",
   };
 
@@ -50,7 +50,7 @@ export default function ResearchPage() {
       {/* Header */}
       <section className="pt-24 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-gold-500 text-sm font-semibold tracking-widest uppercase mb-3">
+          <p className="text-gray-500 text-sm font-medium tracking-widest uppercase mb-3">
             Research
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
@@ -71,7 +71,7 @@ export default function ResearchPage() {
               {reports.map((report) => (
                 <div
                   key={report.title}
-                  className="bg-navy-900/50 border border-white/5 rounded-xl p-8 hover:border-gold-500/30 transition-all duration-300"
+                  className="bg-dark-900 border border-white/5 rounded-xl p-8 hover:border-white/20 transition-all duration-300"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
                     <div className="flex-1">
@@ -93,7 +93,7 @@ export default function ResearchPage() {
                           {report.date}
                         </span>
                         {report.ticker && (
-                          <span className="text-gold-500 font-mono text-xs bg-gold-500/10 px-2 py-0.5 rounded">
+                          <span className="text-white font-mono text-xs bg-white/5 px-2 py-0.5 rounded">
                             {report.ticker}
                           </span>
                         )}
@@ -103,7 +103,7 @@ export default function ResearchPage() {
                       <a
                         href={report.href}
                         download
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gold-500/10 text-gold-500 text-sm font-medium rounded-lg hover:bg-gold-500/20 transition-colors shrink-0"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 text-white text-sm font-medium rounded-lg hover:bg-white/10 transition-colors shrink-0"
                       >
                         <Download className="w-4 h-4" />
                         PDF 다운로드
@@ -119,7 +119,7 @@ export default function ResearchPage() {
           ) : (
             /* Empty State */
             <div className="text-center py-20">
-              <div className="w-20 h-20 bg-navy-800 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-dark-700 rounded-full flex items-center justify-center mx-auto mb-6">
                 <FileText className="w-10 h-10 text-gray-600" />
               </div>
               <h3 className="text-white text-xl font-bold mb-3">
@@ -137,7 +137,7 @@ export default function ResearchPage() {
       </section>
 
       {/* Report Format Info */}
-      <section className="py-16 px-4 bg-navy-900/30">
+      <section className="py-16 px-4 bg-dark-800">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-white mb-10 text-center">
             리포트 구성
@@ -153,9 +153,9 @@ export default function ResearchPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-navy-900/50 border border-white/5 rounded-lg p-5"
+                className="bg-dark-900 border border-white/5 rounded-lg p-5"
               >
-                <p className="text-gold-500 font-semibold text-sm mb-1">
+                <p className="text-white font-semibold text-sm mb-1">
                   {item.title}
                 </p>
                 <p className="text-gray-400 text-sm">{item.desc}</p>
