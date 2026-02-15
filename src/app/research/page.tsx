@@ -20,7 +20,7 @@ const reports: Report[] = [];
 
 function VerdictBadge({ verdict }: { verdict: "BUY" | "HOLD" | "SELL" }) {
   const styles = {
-    BUY: "bg-accent/10 text-accent border-accent/20",
+    BUY: "bg-signal-green/10 text-signal-green border-signal-green/20",
     HOLD: "bg-white/5 text-gray-300 border-white/20",
     SELL: "bg-signal-red/10 text-signal-red border-signal-red/20",
   };
@@ -60,7 +60,7 @@ export default function ResearchPage() {
               {reports.map((report) => (
                 <div
                   key={report.title}
-                  className="bg-dark-900/60 border border-white/5 rounded-xl p-8 hover:border-accent/20 transition-all duration-300"
+                  className="bg-dark-900/60 border border-white/5 rounded-xl p-8 hover:border-white/20 transition-all duration-300"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
                     <div className="flex-1">
@@ -82,7 +82,7 @@ export default function ResearchPage() {
                           {report.date}
                         </span>
                         {report.ticker && (
-                          <span className="text-accent font-mono text-xs bg-accent/5 px-2 py-0.5 rounded border border-accent/10">
+                          <span className="text-white font-mono text-xs bg-white/5 px-2 py-0.5 rounded border border-white/10">
                             {report.ticker}
                           </span>
                         )}
@@ -92,7 +92,7 @@ export default function ResearchPage() {
                       <a
                         href={report.href}
                         download
-                        className="inline-flex items-center gap-2 px-4 py-2 border border-white/10 text-white text-sm rounded hover:border-accent/30 hover:text-accent transition-colors shrink-0"
+                        className="inline-flex items-center gap-2 px-4 py-2 border border-white/10 text-white text-sm rounded hover:border-white/30 transition-colors shrink-0"
                       >
                         <Download className="w-4 h-4" />
                         PDF
@@ -139,7 +139,7 @@ export default function ResearchPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-dark-800/50 border border-white/5 rounded-lg p-4 hover:border-accent/20 transition-colors"
+                className="bg-dark-800/50 border border-white/5 rounded-lg p-4 hover:border-white/20 transition-colors"
               >
                 <p className="text-white text-sm font-medium mb-1">
                   {item.title}

@@ -45,9 +45,8 @@ export default function Navbar() {
             ))}
             <a
               href={GOOGLE_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm px-5 py-1.5 border border-accent/40 text-accent rounded hover:bg-accent/10 transition-colors tracking-wide"
+              {...(GOOGLE_FORM_URL !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="text-sm px-5 py-1.5 border border-white/30 text-white rounded hover:bg-white/5 transition-colors tracking-wide"
             >
               Apply
             </a>
@@ -77,17 +76,16 @@ export default function Navbar() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-white text-2xl font-display tracking-widest hover:text-accent transition-colors"
+                className="text-white text-2xl font-display tracking-widest hover:text-gray-400 transition-colors"
               >
                 {item.label}
               </Link>
             ))}
             <a
               href={GOOGLE_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...(GOOGLE_FORM_URL !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               onClick={() => setMobileOpen(false)}
-              className="text-accent text-2xl font-display tracking-widest hover:text-accent-glow transition-colors"
+              className="text-white text-2xl font-display tracking-widest hover:text-gray-400 transition-colors"
             >
               Apply
             </a>

@@ -96,53 +96,6 @@ const TIMELINE = [
 ];
 
 export default function Home() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const scrollSectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let ctx: { revert: () => void } | null = null;
-
-    async function initGSAP() {
-      const container = scrollContainerRef.current;
-      const section = scrollSectionRef.current;
-      if (!container || !section) return;
-
-      // Only enable horizontal scroll on desktop
-      if (window.innerWidth < 768) return;
-
-      const gsapModule = await import("gsap");
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-
-      gsapModule.gsap.registerPlugin(ScrollTrigger);
-
-      const panels = container.querySelectorAll<HTMLElement>(".panel");
-      const totalWidth = Array.from(panels).reduce(
-        (acc, panel) => acc + panel.offsetWidth,
-        0
-      );
-
-      ctx = gsapModule.gsap.context(() => {
-        gsapModule.gsap.to(container, {
-          x: -(totalWidth - window.innerWidth),
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            pin: true,
-            scrub: 1,
-            end: () => `+=${totalWidth}`,
-            invalidateOnRefresh: true,
-          },
-        });
-      });
-    }
-
-    initGSAP();
-
-    return () => {
-      ctx?.revert();
-    };
-  }, []);
-
   return (
     <div className="relative">
       <BackgroundMesh />
@@ -164,15 +117,14 @@ export default function Home() {
             speed={60}
             delay={800}
             className="text-gray-400 text-base sm:text-lg"
-            cursorClassName="text-accent"
+            cursorClassName="text-white"
           />
         </div>
         <div className="flex items-center gap-6">
           <a
             href={GOOGLE_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-2 px-8 py-3 border border-accent/40 text-accent text-sm tracking-wider rounded hover:bg-accent/10 transition-all"
+            {...(GOOGLE_FORM_URL !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            className="group flex items-center gap-2 px-8 py-3 border border-white/30 text-white text-sm tracking-wider rounded hover:bg-white/5 transition-all"
           >
             APPLY
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -187,72 +139,60 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ====== WHAT WE DO — Horizontal Scroll ====== */}
-      <section
-        id="what-we-do"
-        ref={scrollSectionRef}
-        className="relative z-10 overflow-hidden"
-      >
-        <div
-          ref={scrollContainerRef}
-          className="flex flex-col md:flex-row"
-        >
-          {/* Intro panel */}
-          <div className="panel w-screen md:h-screen flex-shrink-0 flex items-center justify-center px-6 py-24 md:py-0">
-            <FadeIn className="text-center">
-              <p className="text-gray-600 text-xs tracking-[0.4em] uppercase mb-4">
-                What We Do
-              </p>
-              <h2 className="font-display text-white text-4xl sm:text-5xl tracking-wider">
-                OPERATIONS
-              </h2>
-            </FadeIn>
-          </div>
+      {/* ====== WHAT WE DO ====== */}
+      <section id="what-we-do" className="relative z-10 py-32 px-6">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn className="text-center mb-24">
+            <p className="text-gray-600 text-xs tracking-[0.4em] uppercase mb-4">
+              What We Do
+            </p>
+            <h2 className="font-display text-white text-4xl sm:text-5xl tracking-wider">
+              OPERATIONS
+            </h2>
+          </FadeIn>
 
-          {/* Content panels */}
-          {PANELS.map((panel) => (
-            <div
-              key={panel.tag}
-              className="panel w-screen md:h-screen flex-shrink-0 flex items-center px-8 sm:px-16 lg:px-24 py-16 md:py-0"
-            >
-              <div className="max-w-2xl">
-                <span className="text-accent/40 text-xs font-mono tracking-widest mb-4 block">
-                  {panel.tag}
-                </span>
-                <h3 className="font-display text-white text-3xl sm:text-5xl tracking-wider mb-2">
-                  {panel.title}
-                </h3>
-                <p className="text-gray-600 text-xs tracking-[0.3em] uppercase mb-8">
-                  {panel.subtitle}
-                </p>
-                <div className="space-y-2 mb-8">
-                  {panel.lines.map((line, i) => (
-                    <p
-                      key={i}
-                      className="text-gray-400 text-sm sm:text-base leading-relaxed"
-                    >
-                      {line}
-                    </p>
-                  ))}
+          <div className="space-y-32">
+            {PANELS.map((panel) => (
+              <FadeIn key={panel.tag}>
+                <div className="max-w-2xl">
+                  <span className="text-white/20 text-xs font-mono tracking-widest mb-4 block">
+                    {panel.tag}
+                  </span>
+                  <h3 className="font-display text-white text-3xl sm:text-5xl tracking-wider mb-2">
+                    {panel.title}
+                  </h3>
+                  <p className="text-gray-600 text-xs tracking-[0.3em] uppercase mb-8">
+                    {panel.subtitle}
+                  </p>
+                  <div className="space-y-2 mb-8">
+                    {panel.lines.map((line, i) => (
+                      <p
+                        key={i}
+                        className="text-gray-400 text-sm sm:text-base leading-relaxed"
+                      >
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    {panel.keywords.map((kw) => (
+                      <span
+                        key={kw}
+                        className="text-xs text-white/40 border border-white/10 px-3 py-1 rounded-full"
+                      >
+                        {kw}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-3">
-                  {panel.keywords.map((kw) => (
-                    <span
-                      key={kw}
-                      className="text-xs text-accent/60 border border-accent/20 px-3 py-1 rounded-full"
-                    >
-                      {kw}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ====== HOW WE THINK ====== */}
-      <section className="relative z-10 min-h-screen flex items-center px-6 py-24">
+      <section className="relative z-10 py-32 px-6">
         <div className="max-w-4xl mx-auto w-full">
           <FadeIn>
             <p className="text-gray-600 text-xs tracking-[0.4em] uppercase mb-4">
@@ -267,14 +207,14 @@ export default function Home() {
           <FadeIn>
             <div className="bg-dark-900/80 border border-white/5 rounded-xl p-6 sm:p-8 font-mono text-sm mb-12">
               <div className="flex items-center gap-2 mb-6">
-                <Terminal className="w-4 h-4 text-accent" />
+                <Terminal className="w-4 h-4 text-white" />
                 <span className="text-gray-600 text-xs">cufa_terminal</span>
               </div>
               <div className="space-y-2 text-gray-400">
                 <p>
-                  <span className="text-accent">$</span> cufa.init
+                  <span className="text-white">$</span> cufa.init
                   <span className="text-white">(</span>
-                  <span className="text-accent-glow">
+                  <span className="text-gray-300">
                     &quot;beyond_consensus&quot;
                   </span>
                   <span className="text-white">)</span>
@@ -286,7 +226,7 @@ export default function Home() {
                   // CUFA는 AI 워크스테이션 위에서 리서치한다.
                 </p>
                 <p className="mt-4">
-                  <span className="text-accent">$</span> cufa.philosophy
+                  <span className="text-white">$</span> cufa.philosophy
                 </p>
                 <p className="text-white">
                   → &quot;AI를 쓰는 게 아니다. AI의 가정을 수정하고
@@ -312,9 +252,9 @@ export default function Home() {
               ].map((block, i) => (
                 <div
                   key={block.week}
-                  className="relative bg-dark-800/50 border border-white/5 rounded-lg p-4 text-center group hover:border-accent/30 transition-colors"
+                  className="relative bg-dark-800/50 border border-white/5 rounded-lg p-4 text-center group hover:border-white/20 transition-colors"
                 >
-                  <span className="text-accent text-xs font-mono block mb-1">
+                  <span className="text-white/50 text-xs font-mono block mb-1">
                     {block.week}
                   </span>
                   <span className="text-white text-sm">{block.label}</span>
@@ -329,7 +269,7 @@ export default function Home() {
       </section>
 
       {/* ====== JOIN ====== */}
-      <section className="relative z-10 min-h-screen flex items-center px-6 py-24">
+      <section className="relative z-10 py-32 px-6">
         <div className="max-w-4xl mx-auto w-full">
           <FadeIn>
             <p className="text-gray-600 text-xs tracking-[0.4em] uppercase mb-4">
@@ -345,9 +285,9 @@ export default function Home() {
             <div className="relative pl-8 border-l border-white/10">
               {TIMELINE.map((step, i) => (
                 <div key={step.label} className="relative mb-8 last:mb-0">
-                  <div className="absolute -left-[calc(2rem+5px)] top-1 w-2.5 h-2.5 rounded-full bg-accent/40 border border-accent" />
+                  <div className="absolute -left-[calc(2rem+5px)] top-1 w-2.5 h-2.5 rounded-full bg-white/20 border border-white/60" />
                   <p className="text-white text-sm font-medium mb-1">
-                    <span className="text-accent font-mono mr-2">
+                    <span className="text-white/40 font-mono mr-2">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     {step.label}
@@ -388,9 +328,8 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <a
                 href={GOOGLE_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 px-8 py-3 border border-accent/40 text-accent text-sm tracking-wider rounded hover:bg-accent/10 transition-all"
+                {...(GOOGLE_FORM_URL !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="group inline-flex items-center gap-2 px-8 py-3 border border-white/30 text-white text-sm tracking-wider rounded hover:bg-white/5 transition-all"
               >
                 APPLY NOW
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

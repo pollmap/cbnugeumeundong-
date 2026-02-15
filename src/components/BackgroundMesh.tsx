@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 const NODE_COUNT = 220;
 const MAX_EDGE_DIST = 150;
-const ACCENT = new THREE.Color(0x00d4aa);
+const HIGHLIGHT = new THREE.Color(0xffffff);
 const BASE_COLOR = new THREE.Color(0x1a1a2e);
 const MOUSE_RADIUS = 200;
 
@@ -148,7 +148,7 @@ export default function BackgroundMesh() {
         // Color based on mouse proximity
         const distToMouse = positions[i].distanceTo(mousePos3D);
         const t = Math.max(0, 1 - distToMouse / MOUSE_RADIUS);
-        const color = BASE_COLOR.clone().lerp(ACCENT, t * 0.8);
+        const color = BASE_COLOR.clone().lerp(HIGHLIGHT, t * 0.8);
         pointColors[i * 3] = color.r;
         pointColors[i * 3 + 1] = color.g;
         pointColors[i * 3 + 2] = color.b;
@@ -166,7 +166,7 @@ export default function BackgroundMesh() {
               .multiplyScalar(0.5);
             const distToMouse = midpoint.distanceTo(mousePos3D);
             const t = Math.max(0, 1 - distToMouse / MOUSE_RADIUS);
-            const edgeColor = BASE_COLOR.clone().lerp(ACCENT, t * 0.6);
+            const edgeColor = BASE_COLOR.clone().lerp(HIGHLIGHT, t * 0.6);
 
             const idx = edgeIdx * 6;
             linePositions[idx] = positions[i].x;
