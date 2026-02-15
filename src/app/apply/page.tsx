@@ -304,7 +304,10 @@ export default function ApplyPage() {
                   />
                 </div>
                 <div>
-                  <label className={labelClass}>학년{requiredMark}</label>
+                  <label className={labelClass}>
+                    학년{requiredMark}
+                    <span className="text-gray-600 text-xs ml-2">(2026년 1학기 기준)</span>
+                  </label>
                   <select
                     required
                     value={form.grade}

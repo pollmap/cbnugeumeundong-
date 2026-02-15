@@ -12,11 +12,11 @@ async function getSupabaseAdmin() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, phone } = await request.json();
+    const { name, studentId, phone } = await request.json();
 
-    if (!name?.trim() || !phone?.trim()) {
+    if (!name?.trim() || !studentId?.trim() || !phone?.trim()) {
       return NextResponse.json(
-        { success: false, message: "이름과 연락처를 모두 입력해주세요." },
+        { success: false, message: "이름, 학번, 연락처를 모두 입력해주세요." },
         { status: 400 }
       );
     }
@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
       .from("applications")
       .select("name, department, grade, created_at")
       .eq("name", name.trim())
+      .eq("student_id", studentId.trim())
       .eq("phone", phoneDigits)
       .order("created_at", { ascending: false })
       .limit(1);

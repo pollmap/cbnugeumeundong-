@@ -24,6 +24,7 @@ interface CheckResult {
 
 export default function CheckPage() {
   const [name, setName] = useState("");
+  const [studentId, setStudentId] = useState("");
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<CheckResult | null>(null);
@@ -39,7 +40,7 @@ export default function CheckPage() {
       const res = await fetch("/api/apply/check", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone }),
+        body: JSON.stringify({ name, studentId, phone }),
       });
       const data = await res.json();
       if (res.ok && data.success) {
@@ -81,7 +82,7 @@ export default function CheckPage() {
             지원 확인
           </h1>
           <p className="text-gray-500 text-sm mb-12">
-            이름과 연락처를 입력하면 지원서 접수 여부를 확인할 수 있습니다.
+            이름, 학번, 연락처를 입력하면 지원서 접수 여부를 확인할 수 있습니다.
           </p>
 
           <form onSubmit={handleCheck} className="space-y-5">
@@ -93,6 +94,17 @@ export default function CheckPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="홍길동"
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label className="block text-white text-sm mb-2">학번</label>
+              <input
+                required
+                type="text"
+                value={studentId}
+                onChange={(e) => setStudentId(e.target.value.replace(/\D/g, ""))}
+                placeholder="2024000000"
                 className={inputClass}
               />
             </div>
