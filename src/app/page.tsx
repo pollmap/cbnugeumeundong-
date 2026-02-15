@@ -2,10 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
-import { ArrowRight, ArrowDown, Download, Terminal } from "lucide-react";
+import { ArrowRight, ArrowDown, Terminal } from "lucide-react";
 import TypeWriter from "@/components/TypeWriter";
 import Footer from "@/components/Footer";
-import { GOOGLE_FORM_URL, WORD_DOWNLOAD_URL } from "@/lib/constants";
+import { GOOGLE_FORM_URL } from "@/lib/constants";
 
 const BackgroundMesh = dynamic(() => import("@/components/BackgroundMesh"), {
   ssr: false,
@@ -307,12 +307,16 @@ export default function Home() {
                   a: "없다. 투자에 관심 있는 충북대 재학생이면 된다.",
                 },
                 {
-                  q: "코딩 경험이 필요한가요?",
-                  a: "필요 없다. AI 도구 활용은 입회 후 교육한다.",
+                  q: "활동 기간은?",
+                  a: "2학기 연속 참여 필수. 6주 리서치 블록 2회 + IC 세션.",
                 },
                 {
-                  q: "활동 기간은?",
-                  a: "학기 단위. 6주 리서치 블록 2회 + IC 세션.",
+                  q: "휴학생도 지원 가능한가요?",
+                  a: "불가. 재학 중인 학생만 지원할 수 있다.",
+                },
+                {
+                  q: "코딩 경험이 필요한가요?",
+                  a: "필요 없다. AI 도구 활용은 입회 후 교육한다.",
                 },
               ].map((faq) => (
                 <div key={faq.q}>
@@ -325,24 +329,14 @@ export default function Home() {
 
           {/* CTA */}
           <FadeIn>
-            <div className="flex flex-col sm:flex-row items-start gap-4">
-              <a
-                href={GOOGLE_FORM_URL}
-                {...(GOOGLE_FORM_URL !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="group inline-flex items-center gap-2 px-8 py-3 border border-white/30 text-white text-sm tracking-wider rounded hover:bg-white/5 transition-all"
-              >
-                APPLY NOW
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href={WORD_DOWNLOAD_URL}
-                download
-                className="inline-flex items-center gap-2 px-6 py-3 text-gray-500 text-sm tracking-wider hover:text-gray-300 transition-colors"
-              >
-                <Download className="w-4 h-4" />
-                지원서 양식 다운로드 (.docx)
-              </a>
-            </div>
+            <a
+              href={GOOGLE_FORM_URL}
+              {...(GOOGLE_FORM_URL !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="group inline-flex items-center gap-2 px-8 py-3 border border-white/30 text-white text-sm tracking-wider rounded hover:bg-white/5 transition-all"
+            >
+              APPLY NOW
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
           </FadeIn>
         </div>
       </section>

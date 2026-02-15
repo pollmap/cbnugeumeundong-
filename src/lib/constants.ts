@@ -4,7 +4,6 @@ export const SITE_DESCRIPTION =
   "충북대학교 가치투자학회 CUFA - AI가 바꾸는 투자 리서치";
 
 export const GOOGLE_FORM_URL = "#";
-export const WORD_DOWNLOAD_URL = "/files/application-form.docx";
 
 interface NavItem {
   label: string;
