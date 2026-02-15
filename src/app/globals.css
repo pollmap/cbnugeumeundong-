@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-dark-950: #000000;
-  --color-dark-900: #0a0a0a;
-  --color-dark-800: #111111;
-  --color-dark-700: #1a1a1a;
-  --color-dark-600: #2a2a2a;
-  --color-accent: #4a9eff;
+  --color-dark-950: #0A0A0F;
+  --color-dark-900: #0E0E16;
+  --color-dark-800: #12121A;
+  --color-dark-700: #1A1A2E;
+  --color-dark-600: #2A2A3A;
+  --color-accent: #00D4AA;
+  --color-accent-glow: #4DFFDF;
   --color-signal-green: #00c853;
   --color-signal-red: #ff1744;
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans KR", sans-serif;
+  --font-sans: "Inter", "Pretendard", sans-serif;
+  --font-display: "Cinzel", serif;
 }
 
 html {
@@ -23,5 +25,38 @@ body {
 
 ::selection {
   background-color: var(--color-accent);
-  color: #ffffff;
+  color: #000000;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes underline-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
 }
