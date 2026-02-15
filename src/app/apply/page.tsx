@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 
 const GRADES = ["1학년", "2학년", "3학년", "4학년"] as const;
 const EXPERIENCE = ["없음", "1년 미만", "1~3년", "3년 이상"] as const;
+const MOTIVATION_MIN = 500;
 
 interface FormData {
   name: string;
@@ -18,7 +19,10 @@ interface FormData {
   isEnrolled: string;
   experience: string;
   motivation: string;
-  interests: string;
+  industry1: string;
+  industry2: string;
+  company1: string;
+  company2: string;
 }
 
 const initial: FormData = {
@@ -32,7 +36,10 @@ const initial: FormData = {
   isEnrolled: "",
   experience: "",
   motivation: "",
-  interests: "",
+  industry1: "",
+  industry2: "",
+  company1: "",
+  company2: "",
 };
 
 function formatPhone(v: string) {
@@ -55,6 +62,24 @@ export default function ApplyPage() {
     e.preventDefault();
     setStatus("submitting");
     setErrorMsg("");
+
+    if (form.canCommit === "아니오") {
+      setStatus("error");
+      setErrorMsg("2학기 연속 참여가 불가능한 경우 지원할 수 없습니다.");
+      return;
+    }
+
+    if (form.isEnrolled === "아니오") {
+      setStatus("error");
+      setErrorMsg("현재 재학 중인 학생만 지원 가능합니다.");
+      return;
+    }
+
+    if (form.motivation.length < MOTIVATION_MIN) {
+      setStatus("error");
+      setErrorMsg(`지원 동기는 ${MOTIVATION_MIN}자 이상 작성해주세요. (현재 ${form.motivation.length}자)`);
+      return;
+    }
 
     try {
       const res = await fetch("/api/apply", {
@@ -86,8 +111,11 @@ export default function ApplyPage() {
           <p className="text-gray-500 text-sm mb-2">
             지원서가 정상적으로 접수되었습니다.
           </p>
-          <p className="text-gray-600 text-sm">
-            서류 심사 후 개별 연락드리겠습니다.
+          <p className="text-gray-400 text-sm mb-4">
+            서류 심사 후 면접 대상자에게 개별 연락드리겠습니다.
+          </p>
+          <p className="text-gray-600 text-xs">
+            서류 합격 → 면접 → 최종 합격
           </p>
         </div>
       </div>
@@ -98,6 +126,8 @@ export default function ApplyPage() {
     "w-full bg-dark-800/50 border border-white/10 rounded px-4 py-3 text-white text-sm placeholder:text-gray-700 focus:outline-none focus:border-white/30 transition-colors";
   const labelClass = "block text-white text-sm mb-2";
   const requiredMark = <span className="text-gray-500 ml-1">*</span>;
+  const motivationLen = form.motivation.length;
+  const motivationOk = motivationLen >= MOTIVATION_MIN;
 
   return (
     <div className="min-h-screen pt-16">
@@ -112,8 +142,16 @@ export default function ApplyPage() {
           <p className="text-gray-500 text-sm mb-2">
             충북대학교 가치투자학회 CUFA 신규 회원 모집
           </p>
-          <div className="text-gray-600 text-xs space-y-1 mb-12">
+          <div className="text-gray-600 text-xs space-y-1 mb-4">
             <p>2학기 연속 참여 필수 / 휴학생 지원 불가</p>
+          </div>
+          <div className="border border-white/10 rounded px-4 py-3 mb-12">
+            <p className="text-gray-400 text-xs leading-relaxed">
+              전형 절차: <span className="text-white">온라인 지원서 제출</span> → <span className="text-white">서류 심사</span> → <span className="text-white">면접</span> → <span className="text-white">최종 합격</span>
+            </p>
+            <p className="text-gray-600 text-xs mt-1">
+              서류 합격자에 한해 면접 일정을 개별 안내합니다.
+            </p>
           </div>
 
           {status === "error" && (
@@ -246,6 +284,11 @@ export default function ApplyPage() {
                     </label>
                   ))}
                 </div>
+                {form.canCommit === "아니오" && (
+                  <p className="text-gray-500 text-xs mt-2">
+                    2학기 연속 참여가 불가능한 경우 지원할 수 없습니다.
+                  </p>
+                )}
               </div>
 
               <div>
@@ -315,29 +358,93 @@ export default function ApplyPage() {
               </p>
 
               <div>
-                <label className={labelClass}>지원 동기{requiredMark}</label>
+                <label className={labelClass}>
+                  지원 동기{requiredMark}
+                  <span className="text-gray-600 text-xs ml-2">
+                    (500자 이상)
+                  </span>
+                </label>
                 <textarea
                   required
                   value={form.motivation}
                   onChange={(e) => set("motivation", e.target.value)}
-                  placeholder="간단하게 작성해주세요."
-                  rows={4}
+                  placeholder="CUFA에 지원하게 된 동기를 500자 이상으로 작성해주세요."
+                  rows={6}
                   className={`${inputClass} resize-none`}
                 />
+                <div className="flex justify-end mt-1.5">
+                  <span
+                    className={`text-xs tabular-nums ${
+                      motivationOk ? "text-gray-500" : "text-gray-600"
+                    }`}
+                  >
+                    <span className={motivationLen > 0 && !motivationOk ? "text-white" : ""}>
+                      {motivationLen}
+                    </span>
+                    <span className="text-gray-700"> / {MOTIVATION_MIN}자</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 관심 산업 & 기업 */}
+            <div className="space-y-5">
+              <p className="text-gray-600 text-xs tracking-widest uppercase">
+                Interests
+              </p>
+
+              <div>
+                <label className={labelClass}>
+                  관심 산업{requiredMark}
+                  <span className="text-gray-600 text-xs ml-2">
+                    (2개)
+                  </span>
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input
+                    required
+                    type="text"
+                    value={form.industry1}
+                    onChange={(e) => set("industry1", e.target.value)}
+                    placeholder="예: 반도체"
+                    className={inputClass}
+                  />
+                  <input
+                    required
+                    type="text"
+                    value={form.industry2}
+                    onChange={(e) => set("industry2", e.target.value)}
+                    placeholder="예: 2차전지"
+                    className={inputClass}
+                  />
+                </div>
               </div>
 
               <div>
                 <label className={labelClass}>
-                  관심 산업 / 종목
-                  <span className="text-gray-700 text-xs ml-2">(선택)</span>
+                  관심 기업{requiredMark}
+                  <span className="text-gray-600 text-xs ml-2">
+                    (2개)
+                  </span>
                 </label>
-                <textarea
-                  value={form.interests}
-                  onChange={(e) => set("interests", e.target.value)}
-                  placeholder="자유롭게 적어주세요."
-                  rows={3}
-                  className={`${inputClass} resize-none`}
-                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input
+                    required
+                    type="text"
+                    value={form.company1}
+                    onChange={(e) => set("company1", e.target.value)}
+                    placeholder="예: 삼성전자"
+                    className={inputClass}
+                  />
+                  <input
+                    required
+                    type="text"
+                    value={form.company2}
+                    onChange={(e) => set("company2", e.target.value)}
+                    placeholder="예: LG에너지솔루션"
+                    className={inputClass}
+                  />
+                </div>
               </div>
             </div>
 
