@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { Upload, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 
-interface FormData {
+interface ApplicationData {
   name: string;
   studentId: string;
   email: string;
@@ -26,7 +26,7 @@ function formatPhone(value: string): string {
 }
 
 export default function ApplicationForm() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<ApplicationData>({
     name: "",
     studentId: "",
     email: "",

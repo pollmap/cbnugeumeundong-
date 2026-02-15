@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Instagram } from "lucide-react";
 import { SOCIAL_LINKS, SITE_NAME } from "@/lib/constants";
 

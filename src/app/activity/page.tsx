@@ -149,7 +149,7 @@ export default function ActivityPage() {
               { month: "9월", event: "2학기 OT & 스터디 재개" },
               { month: "10-11월", event: "정규 스터디 & 특강" },
               { month: "12월", event: "2학기 모의투자 대회 & 송년회" },
-            ].map((item, i) => (
+            ].map((item) => (
               <div
                 key={item.month}
                 className="flex items-center gap-4 bg-navy-900/50 border border-white/5 rounded-lg px-6 py-4"
