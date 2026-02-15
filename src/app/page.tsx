@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { ArrowRight, ArrowDown, Terminal } from "lucide-react";
 import TypeWriter from "@/components/TypeWriter";
 import Footer from "@/components/Footer";
@@ -106,14 +105,12 @@ export default function Home() {
         id="hero"
         className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 text-center"
       >
-        <Image
-          src="/images/cufa-logo.svg"
-          alt="CUFA - 충북대학교 가치투자학회"
-          width={480}
-          height={240}
-          className="w-72 sm:w-96 lg:w-[480px] h-auto mb-8"
-          priority
-        />
+        <p className="text-gray-600 text-xs sm:text-sm tracking-[0.3em] uppercase mb-4">
+          Chungbuk University Financial Analysis
+        </p>
+        <h1 className="font-display text-white text-6xl sm:text-8xl lg:text-[120px] tracking-[0.4em] sm:tracking-[0.5em] leading-none mb-4">
+          CUFA
+        </h1>
         <p className="text-gray-500 text-sm sm:text-base tracking-[0.3em] uppercase mb-12">
           Beyond Consensus
         </p>

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
+const MOTIVATION_MIN = 500;
+
 async function getSupabaseAdmin() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -25,7 +27,10 @@ export async function POST(request: NextRequest) {
       isEnrolled,
       experience,
       motivation,
-      interests,
+      industry1,
+      industry2,
+      company1,
+      company2,
     } = body;
 
     // Validation
@@ -39,10 +44,24 @@ export async function POST(request: NextRequest) {
       !canCommit ||
       !isEnrolled ||
       !experience ||
-      !motivation?.trim()
+      !motivation?.trim() ||
+      !industry1?.trim() ||
+      !industry2?.trim() ||
+      !company1?.trim() ||
+      !company2?.trim()
     ) {
       return NextResponse.json(
         { success: false, message: "필수 항목을 모두 입력해주세요." },
+        { status: 400 }
+      );
+    }
+
+    if (motivation.trim().length < MOTIVATION_MIN) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: `지원 동기는 ${MOTIVATION_MIN}자 이상 작성해주세요. (현재 ${motivation.trim().length}자)`,
+        },
         { status: 400 }
       );
     }
@@ -81,7 +100,10 @@ export async function POST(request: NextRequest) {
       is_enrolled: isEnrolled,
       experience,
       motivation: motivation.trim(),
-      interests: interests?.trim() || null,
+      industry1: industry1.trim(),
+      industry2: industry2.trim(),
+      company1: company1.trim(),
+      company2: company2.trim(),
     });
 
     if (error) {
