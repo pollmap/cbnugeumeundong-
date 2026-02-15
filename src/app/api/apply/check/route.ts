@@ -21,6 +21,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!/^\d{10}$/.test(studentId.trim())) {
+      return NextResponse.json(
+        { success: false, message: "학번은 10자리 숫자로 입력해주세요." },
+        { status: 400 }
+      );
+    }
+
     const supabase = await getSupabaseAdmin();
     if (!supabase) {
       return NextResponse.json(

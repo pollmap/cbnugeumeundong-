@@ -157,9 +157,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!/^\d+$/.test(studentId.trim())) {
+    if (!/^\d{10}$/.test(studentId.trim())) {
       return NextResponse.json(
-        { success: false, message: "학번은 숫자만 입력 가능합니다." },
+        { success: false, message: "학번은 10자리 숫자로 입력해주세요." },
         { status: 400 }
       );
     }

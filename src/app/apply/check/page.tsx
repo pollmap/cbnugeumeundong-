@@ -98,13 +98,14 @@ export default function CheckPage() {
               />
             </div>
             <div>
-              <label className="block text-white text-sm mb-2">학번</label>
+              <label className="block text-white text-sm mb-2">학번 <span className="text-gray-600 text-xs">(10자리)</span></label>
               <input
                 required
                 type="text"
                 value={studentId}
-                onChange={(e) => setStudentId(e.target.value.replace(/\D/g, ""))}
+                onChange={(e) => setStudentId(e.target.value.replace(/\D/g, "").slice(0, 10))}
                 placeholder="2024000000"
+                maxLength={10}
                 className={inputClass}
               />
             </div>
