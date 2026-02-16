@@ -577,12 +577,32 @@ export default function ApplyPage() {
               - 수집된 개인정보는 오직 지원 심사 목적으로만 사용됩니다.
               - 최종 합격 또는 탈락 확정 후 자동으로 파기됩니다.
             */}
-            <div className="border border-white/10 rounded p-4 space-y-3">
-              <p className="text-gray-400 text-xs leading-relaxed">
-                수집된 개인정보(이름, 학번, 학과, 이메일 등)는 CUFA 신규 회원 모집
-                심사 목적으로만 사용되며, 최종 합격 또는 탈락 확정 후 자동으로
-                파기됩니다.
+            <div className="border border-white/10 rounded p-5 space-y-4">
+              <p className="text-white text-sm font-semibold">
+                개인정보 수집·이용 동의
               </p>
+              <div className="bg-dark-800/50 rounded p-4 space-y-3 text-xs text-gray-400 leading-relaxed max-h-48 overflow-y-auto">
+                <div>
+                  <p className="text-gray-300 font-medium mb-1">1. 수집 항목</p>
+                  <p>이름, 학번, 학과, 학년, 연락처, 이메일, 투자 경험, 지원 동기, 관심 산업·기업</p>
+                </div>
+                <div>
+                  <p className="text-gray-300 font-medium mb-1">2. 수집 목적</p>
+                  <p>CUFA 신규 회원 모집을 위한 서류 심사 및 면접 전형</p>
+                </div>
+                <div>
+                  <p className="text-gray-300 font-medium mb-1">3. 보유 및 이용 기간</p>
+                  <p>최종 합격 또는 탈락 확정 후 즉시 파기 (최대 해당 학기 종료 시점까지)</p>
+                </div>
+                <div>
+                  <p className="text-gray-300 font-medium mb-1">4. 동의 거부 권리</p>
+                  <p>동의를 거부할 수 있으나, 거부 시 지원이 불가합니다.</p>
+                </div>
+                <div>
+                  <p className="text-gray-300 font-medium mb-1">5. 제3자 제공</p>
+                  <p>수집된 개인정보는 제3자에게 제공되지 않습니다.</p>
+                </div>
+              </div>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
@@ -591,7 +611,7 @@ export default function ApplyPage() {
                   className="w-4 h-4 accent-white rounded"
                 />
                 <span className="text-white text-sm">
-                  개인정보 수집·이용에 동의합니다.
+                  위 내용을 확인하였으며, 개인정보 수집·이용에 동의합니다.
                 </span>
                 <span className="text-gray-500 ml-1">*</span>
               </label>
