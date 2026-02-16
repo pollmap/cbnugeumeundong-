@@ -80,7 +80,7 @@ const PANELS = [
     title: "LIVE FUND",
     subtitle: "REAL CAPITAL",
     lines: [
-      "100만원 실전 펀드.",
+      "실전 펀드 운용.",
       "킬조건 기반 리스크 관리.",
       "투자 판단 저널. 실전이 가르친다.",
     ],

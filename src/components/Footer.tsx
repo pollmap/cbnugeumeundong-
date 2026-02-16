@@ -1,5 +1,5 @@
 import { SITE_NAME } from "@/lib/constants";
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -25,13 +25,6 @@ export default function Footer() {
               회장 이찬희
             </p>
             <div className="space-y-2">
-              <a
-                href="tel:010-9598-3921"
-                className="flex items-center gap-2 text-gray-400 text-sm hover:text-white transition-colors"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                010-9598-3921
-              </a>
               <a
                 href="mailto:lch6817556@gmail.com"
                 className="flex items-center gap-2 text-gray-400 text-sm hover:text-white transition-colors"

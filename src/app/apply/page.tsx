@@ -95,6 +95,7 @@ function Modal({
 
 export default function ApplyPage() {
   const [form, setForm] = useState<FormData>(initial);
+  const [privacyAgreed, setPrivacyAgreed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -571,10 +572,35 @@ export default function ApplyPage() {
               </div>
             </div>
 
+            {/*
+              개인정보 수집·이용 동의
+              - 수집된 개인정보는 오직 지원 심사 목적으로만 사용됩니다.
+              - 최종 합격 또는 탈락 확정 후 자동으로 파기됩니다.
+            */}
+            <div className="border border-white/10 rounded p-4 space-y-3">
+              <p className="text-gray-400 text-xs leading-relaxed">
+                수집된 개인정보(이름, 학번, 학과, 이메일 등)는 CUFA 신규 회원 모집
+                심사 목적으로만 사용되며, 최종 합격 또는 탈락 확정 후 자동으로
+                파기됩니다.
+              </p>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={privacyAgreed}
+                  onChange={(e) => setPrivacyAgreed(e.target.checked)}
+                  className="w-4 h-4 accent-white rounded"
+                />
+                <span className="text-white text-sm">
+                  개인정보 수집·이용에 동의합니다.
+                </span>
+                <span className="text-gray-500 ml-1">*</span>
+              </label>
+            </div>
+
             {/* Submit */}
             <button
               type="submit"
-              disabled={submitting}
+              disabled={submitting || !privacyAgreed}
               className="w-full py-4 bg-white text-black font-semibold text-sm tracking-wider rounded hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {submitting ? (
