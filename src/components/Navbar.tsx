@@ -84,64 +84,80 @@ export default function Navbar() {
 
           <button
             className="md:hidden text-gray-400 hover:text-white transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open menu"
           >
-            {mobileOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
+            <Menu className="w-5 h-5" />
           </button>
         </div>
       </div>
 
-      {mobileOpen && (
-        <div className="md:hidden fixed inset-0 top-16 bg-dark-950 z-40">
-          <div className="flex flex-col items-center justify-center h-full gap-8">
-            {NAV_ITEMS.map((item) =>
-              item.external ? (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileOpen(false)}
-                  className="text-white text-2xl font-display tracking-widest hover:text-gray-400 transition-colors"
-                >
-                  {item.label}
-                </a>
-              ) : item.comingSoon ? (
-                <span
-                  key={item.label}
-                  className="text-gray-600 text-2xl font-display tracking-widest"
-                >
-                  {item.label}
-                  <span className="block text-xs text-gray-500 text-center mt-1">
-                    2026.03.03 공개예정
-                  </span>
-                </span>
-              ) : (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-white text-2xl font-display tracking-widest hover:text-gray-400 transition-colors"
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
-            <Link
-              href={APPLY_URL}
-              onClick={() => setMobileOpen(false)}
-              className="text-white text-2xl font-display tracking-widest hover:text-gray-400 transition-colors"
-            >
-              Apply
-            </Link>
-          </div>
+      {/* Mobile backdrop */}
+      <div
+        className={`md:hidden fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${
+          mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setMobileOpen(false)}
+      />
+
+      {/* Mobile slide-in drawer */}
+      <div
+        className={`md:hidden fixed top-0 right-0 h-full w-64 bg-dark-950 border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out ${
+          mobileOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex justify-end p-5">
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="text-gray-400 hover:text-white transition-colors"
+            aria-label="Close menu"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
-      )}
+        <div className="flex flex-col gap-6 px-8 pt-4">
+          {NAV_ITEMS.map((item) =>
+            item.external ? (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="text-white text-lg font-display tracking-widest hover:text-gray-400 transition-colors"
+              >
+                {item.label}
+              </a>
+            ) : item.comingSoon ? (
+              <span
+                key={item.label}
+                className="text-gray-600 text-lg font-display tracking-widest"
+              >
+                {item.label}
+                <span className="block text-xs text-gray-500 mt-1">
+                  2026.03.03 공개예정
+                </span>
+              </span>
+            ) : (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="text-white text-lg font-display tracking-widest hover:text-gray-400 transition-colors"
+              >
+                {item.label}
+              </Link>
+            )
+          )}
+          <Link
+            href={APPLY_URL}
+            onClick={() => setMobileOpen(false)}
+            className="text-white text-lg font-display tracking-widest hover:text-gray-400 transition-colors"
+          >
+            Apply
+          </Link>
+        </div>
+      </div>
     </nav>
   );
 }
