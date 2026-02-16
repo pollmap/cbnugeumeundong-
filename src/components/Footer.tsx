@@ -42,7 +42,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} CUFA. All rights reserved.
           </p>
           <p className="text-gray-700 text-xs">
-            Designed &amp; Built by CUFA
+            Designed &amp; Built by 이찬희
           </p>
         </div>
       </div>
