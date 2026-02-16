@@ -61,7 +61,7 @@ export default function Navbar() {
                 >
                   {item.label}
                   <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    Coming Soon
+                    2026.03.03 공개예정
                   </span>
                 </span>
               ) : (
@@ -118,7 +118,7 @@ export default function Navbar() {
                 >
                   {item.label}
                   <span className="block text-xs text-gray-500 text-center mt-1">
-                    Coming Soon
+                    2026.03.03 공개예정
                   </span>
                 </span>
               ) : (
