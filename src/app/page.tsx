@@ -55,7 +55,7 @@ function FadeIn({
 const PANELS = [
   {
     tag: "01",
-    title: "AI RESEARCH",
+    title: "RESEARCH",
     subtitle: "NEXUS WORKSTATION",
     lines: [
       "NEXUS 플랫폼 위에서 AI가 데이터 수집부터",
@@ -116,7 +116,7 @@ export default function Home() {
         </p>
         <div className="h-8 mb-16">
           <TypeWriter
-            text="AI 시대, 리서치의 기준을 다시 쓴다."
+            text="리서치의 기준을 다시 쓴다."
             speed={60}
             delay={800}
             className="text-gray-400 text-base sm:text-lg"
@@ -229,7 +229,7 @@ export default function Home() {
                   <span className="text-white">$</span> cufa.philosophy
                 </p>
                 <p className="text-white">
-                  → &quot;AI를 활용해 가정을 수정하고
+                  → &quot;NEXUS를 활용해 가정을 수정하고
                   검증한다.&quot;
                 </p>
               </div>
