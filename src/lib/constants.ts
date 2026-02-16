@@ -10,8 +10,12 @@ export const GOOGLE_FORM_URL =
 interface NavItem {
   label: string;
   href: string;
+  external?: boolean;
+  comingSoon?: boolean;
 }
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Research", href: "/research" },
+  { label: "학습", href: "https://value-alpha.vercel.app/", external: true },
+  { label: "NEXUS", href: "#", comingSoon: true },
 ];
