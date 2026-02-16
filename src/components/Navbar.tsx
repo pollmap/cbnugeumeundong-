@@ -97,7 +97,7 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden fixed inset-0 top-16 bg-dark-950/95 backdrop-blur-lg z-40">
+        <div className="md:hidden fixed inset-0 top-16 bg-dark-950 z-40">
           <div className="flex flex-col items-center justify-center h-full gap-8">
             {NAV_ITEMS.map((item) =>
               item.external ? (
