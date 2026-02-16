@@ -223,16 +223,13 @@ export default function Home() {
                   <span className="text-white">)</span>
                 </p>
                 <p className="text-gray-600">
-                  // 전국 65개 학회가 엑셀과 PDF로 리서치할 때
-                </p>
-                <p className="text-gray-600">
-                  // CUFA는 AI 워크스테이션 위에서 리서치한다.
+                  // AI 워크스테이션 기반 리서치 환경
                 </p>
                 <p className="mt-4">
                   <span className="text-white">$</span> cufa.philosophy
                 </p>
                 <p className="text-white">
-                  → &quot;AI를 쓰는 게 아니다. AI의 가정을 수정하고
+                  → &quot;AI를 활용해 가정을 수정하고
                   검증한다.&quot;
                 </p>
               </div>
@@ -250,8 +247,8 @@ export default function Home() {
                 { week: "W2", label: "산업 분석" },
                 { week: "W3", label: "재무 모델링" },
                 { week: "W4", label: "밸류에이션" },
-                { week: "W5", label: "AI 크로스체크" },
-                { week: "W6", label: "IC 피치" },
+                { week: "W5", label: "IC 피치" },
+                { week: "W6", label: "피드백 반영" },
               ].map((block, i) => (
                 <div
                   key={block.week}
