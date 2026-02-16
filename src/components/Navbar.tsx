@@ -43,15 +43,37 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="nav-link text-gray-400 text-sm tracking-wide hover:text-white transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV_ITEMS.map((item) =>
+              item.external ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-link text-gray-400 text-sm tracking-wide hover:text-white transition-colors"
+                >
+                  {item.label}
+                </a>
+              ) : item.comingSoon ? (
+                <span
+                  key={item.label}
+                  className="nav-link text-gray-600 text-sm tracking-wide cursor-default relative group"
+                >
+                  {item.label}
+                  <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    Coming Soon
+                  </span>
+                </span>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="nav-link text-gray-400 text-sm tracking-wide hover:text-white transition-colors"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
             <Link
               href={APPLY_URL}
               className="text-sm px-5 py-1.5 border border-white/30 text-white rounded hover:bg-white/5 transition-colors tracking-wide"
@@ -77,16 +99,39 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 top-16 bg-dark-950/95 backdrop-blur-lg z-40">
           <div className="flex flex-col items-center justify-center h-full gap-8">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className="text-white text-2xl font-display tracking-widest hover:text-gray-400 transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV_ITEMS.map((item) =>
+              item.external ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileOpen(false)}
+                  className="text-white text-2xl font-display tracking-widest hover:text-gray-400 transition-colors"
+                >
+                  {item.label}
+                </a>
+              ) : item.comingSoon ? (
+                <span
+                  key={item.label}
+                  className="text-gray-600 text-2xl font-display tracking-widest"
+                >
+                  {item.label}
+                  <span className="block text-xs text-gray-500 text-center mt-1">
+                    Coming Soon
+                  </span>
+                </span>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-white text-2xl font-display tracking-widest hover:text-gray-400 transition-colors"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
             <Link
               href={APPLY_URL}
               onClick={() => setMobileOpen(false)}
