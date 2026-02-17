@@ -101,7 +101,7 @@ export default function Navbar() {
 
       {/* Mobile backdrop */}
       <div
-        className={`md:hidden fixed inset-0 bg-black/50 z-[55] transition-opacity duration-300 ${
+        className={`md:hidden fixed inset-0 bg-black/60 z-[55] transition-opacity duration-300 ${
           mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileOpen(false)}
@@ -109,8 +109,8 @@ export default function Navbar() {
 
       {/* Mobile slide-in drawer */}
       <div
-        className={`md:hidden fixed top-0 left-0 h-full w-2/3 bg-dark-900 border-r border-white/10 z-[60] transform transition-transform duration-300 ease-in-out ${
-          mobileOpen ? "translate-x-0" : "-translate-x-full"
+        className={`md:hidden fixed top-0 right-0 h-full w-4/5 bg-dark-900 border-l border-white/10 z-[60] transform transition-transform duration-300 ease-in-out ${
+          mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-end p-5">
