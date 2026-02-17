@@ -101,7 +101,11 @@ export default function Navbar() {
 
       {/* Mobile backdrop */}
       <div
+        codex/add-nexus-category-and-sidebar-fix-jx2nr9
         className={`md:hidden fixed inset-0 bg-dark-950 z-[55] transition-opacity duration-300 ${
+
+        className={`md:hidden fixed inset-0 bg-black/50 z-[55] transition-opacity duration-300 ${
+        main
           mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileOpen(false)}
