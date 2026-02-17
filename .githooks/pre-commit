@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+staged_files=$(git diff --cached --name-only --diff-filter=ACMR)
+
+if [ -z "$staged_files" ]; then
+  exit 0
+fi
+
+if ! printf '%s\n' "$staged_files" | xargs -r rg -n --color never -e '^<<<<<<< ' -e '^=======$' -e '^>>>>>>> ' >/tmp/conflict_markers.txt; then
+  exit 0
+fi
+
+echo "✖ Commit blocked: Git conflict markers detected in staged files:"
+cat /tmp/conflict_markers.txt
+echo ""
+echo "Resolve conflicts and re-stage files before committing."
+exit 1

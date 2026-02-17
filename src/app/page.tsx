@@ -223,7 +223,7 @@ export default function Home() {
                   <span className="text-white">)</span>
                 </p>
                 <p className="text-gray-600">
-                  // AI 워크스테이션 기반 리서치 환경
+                  {"// AI 워크스테이션 기반 리서치 환경"}
                 </p>
                 <p className="mt-4">
                   <span className="text-white">$</span> cufa.philosophy

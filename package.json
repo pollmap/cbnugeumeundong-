@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run check:conflicts:repo && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prepare": "git config core.hooksPath .githooks || true",
+    "check:conflicts": "bash .githooks/pre-commit",
+    "check:conflicts:repo": "bash scripts/check-conflicts.sh"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.95.3",
