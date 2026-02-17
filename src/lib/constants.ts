@@ -15,7 +15,10 @@ interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Hero", href: "/#hero" },
+ codex/add-nexus-category-and-sidebar-fix-ammemn
+  { label: "Main", href: "/" },
+
+ main
   { label: "Research", href: "/research" },
   { label: "Learning", href: "https://value-alpha.vercel.app/", external: true },
   { label: "NEXUS", href: "https://cufa-nexus.vercel.app/", external: true },
