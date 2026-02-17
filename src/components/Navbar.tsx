@@ -18,10 +18,17 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || mobileOpen
           ? "bg-dark-950/80 backdrop-blur-md border-b border-white/5"
           : "bg-transparent"
       }`}
@@ -94,7 +101,7 @@ export default function Navbar() {
 
       {/* Mobile backdrop */}
       <div
-        className={`md:hidden fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${
+        className={`md:hidden fixed inset-0 bg-dark-950 z-[55] transition-opacity duration-300 ${
           mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileOpen(false)}
@@ -102,7 +109,7 @@ export default function Navbar() {
 
       {/* Mobile slide-in drawer */}
       <div
-        className={`md:hidden fixed top-0 right-0 h-full w-64 bg-dark-950 border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`md:hidden fixed top-0 right-0 h-full w-64 bg-dark-950 border-l border-white/10 z-[60] transform transition-transform duration-300 ease-in-out ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
