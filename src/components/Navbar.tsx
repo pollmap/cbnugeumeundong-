@@ -26,82 +26,84 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled || mobileOpen
-          ? "bg-dark-950/80 backdrop-blur-md border-b border-white/5"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/images/cufa-icon-192.png"
-              alt="CUFA"
-              width={36}
-              height={36}
-              className="h-9 w-9 invert"
-              priority
-            />
-            <span className="font-display text-white text-lg tracking-[0.15em] hidden sm:inline">
-              CUFA
-            </span>
-          </Link>
-
-          <div className="hidden md:flex items-center gap-8">
-            {NAV_ITEMS.map((item) =>
-              item.external ? (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="nav-link text-gray-400 text-sm tracking-wide hover:text-white transition-colors"
-                >
-                  {item.label}
-                </a>
-              ) : item.comingSoon ? (
-                <span
-                  key={item.label}
-                  className="nav-link text-gray-600 text-sm tracking-wide cursor-default relative group"
-                >
-                  {item.label}
-                  <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                    2026.03.03 공개예정
-                  </span>
-                </span>
-              ) : (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="nav-link text-gray-400 text-sm tracking-wide hover:text-white transition-colors"
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
-            <Link
-              href={APPLY_URL}
-              className="text-sm px-5 py-1.5 border border-white/30 text-white rounded hover:bg-white/5 transition-colors tracking-wide"
-            >
-              Apply
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-dark-950/80 backdrop-blur-md border-b border-white/5"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/images/cufa-icon-192.png"
+                alt="CUFA"
+                width={36}
+                height={36}
+                className="h-9 w-9 invert"
+                priority
+              />
+              <span className="font-display text-white text-lg tracking-[0.15em] hidden sm:inline">
+                CUFA
+              </span>
             </Link>
+
+            <div className="hidden md:flex items-center gap-8">
+              {NAV_ITEMS.map((item) =>
+                item.external ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nav-link text-gray-400 text-sm tracking-wide hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                ) : item.comingSoon ? (
+                  <span
+                    key={item.label}
+                    className="nav-link text-gray-600 text-sm tracking-wide cursor-default relative group"
+                  >
+                    {item.label}
+                    <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                      2026.03.03 공개예정
+                    </span>
+                  </span>
+                ) : (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className="nav-link text-gray-400 text-sm tracking-wide hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
+              <Link
+                href={APPLY_URL}
+                className="text-sm px-5 py-1.5 border border-white/30 text-white rounded hover:bg-white/5 transition-colors tracking-wide"
+              >
+                Apply
+              </Link>
+            </div>
+
+            <button
+              className="md:hidden text-gray-400 hover:text-white transition-colors"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
           </div>
-
-          <button
-            className="md:hidden text-gray-400 hover:text-white transition-colors"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile fullscreen menu */}
+      {/* Mobile fullscreen menu — nav 바깥에 렌더링해야 backdrop-filter 영향을 안 받음 */}
       <div
-        className={`md:hidden fixed inset-0 z-[60] bg-dark-950 transition-opacity duration-300 ${
+        className={`md:hidden fixed inset-0 z-[60] bg-[#0A0A0F] transition-opacity duration-300 ${
           mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
@@ -157,6 +159,6 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
-    </nav>
+    </>
   );
 }
