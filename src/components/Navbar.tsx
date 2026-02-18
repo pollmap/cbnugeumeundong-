@@ -99,18 +99,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile backdrop */}
+      {/* Mobile fullscreen menu */}
       <div
-        className={`md:hidden fixed inset-0 bg-black/60 z-[55] transition-opacity duration-300 ${
+        className={`md:hidden fixed inset-0 z-[60] bg-dark-950 transition-opacity duration-300 ${
           mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={() => setMobileOpen(false)}
-      />
-
-      {/* Mobile slide-in drawer */}
-      <div
-        className={`md:hidden fixed top-0 right-0 h-full w-4/5 bg-dark-900 border-l border-white/10 z-[60] transform transition-transform duration-300 ease-in-out ${
-          mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex justify-end p-5">
@@ -119,10 +111,10 @@ export default function Navbar() {
             className="text-gray-400 hover:text-white transition-colors"
             aria-label="Close menu"
           >
-            <X className="w-5 h-5" />
+            <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="flex flex-col gap-6 px-8 pt-4">
+        <div className="flex flex-col items-center justify-center gap-8 pt-16">
           {NAV_ITEMS.map((item) =>
             item.external ? (
               <a
@@ -131,17 +123,17 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
-                className="text-white text-lg font-display tracking-widest hover:text-gray-400 transition-colors"
+                className="text-white text-2xl font-display tracking-[0.2em] hover:text-gray-400 transition-colors"
               >
                 {item.label}
               </a>
             ) : item.comingSoon ? (
               <span
                 key={item.label}
-                className="text-gray-600 text-lg font-display tracking-widest"
+                className="text-gray-600 text-2xl font-display tracking-[0.2em]"
               >
                 {item.label}
-                <span className="block text-xs text-gray-500 mt-1">
+                <span className="block text-xs text-gray-500 mt-1 text-center">
                   2026.03.03 공개예정
                 </span>
               </span>
@@ -150,7 +142,7 @@ export default function Navbar() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-white text-lg font-display tracking-widest hover:text-gray-400 transition-colors"
+                className="text-white text-2xl font-display tracking-[0.2em] hover:text-gray-400 transition-colors"
               >
                 {item.label}
               </Link>
@@ -159,7 +151,7 @@ export default function Navbar() {
           <Link
             href={APPLY_URL}
             onClick={() => setMobileOpen(false)}
-            className="text-white text-lg font-display tracking-widest hover:text-gray-400 transition-colors"
+            className="mt-4 px-8 py-2.5 border border-white/30 text-white text-lg font-display tracking-[0.2em] rounded hover:bg-white/5 transition-colors"
           >
             Apply
           </Link>
