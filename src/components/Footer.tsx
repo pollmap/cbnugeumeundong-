@@ -12,7 +12,7 @@ export default function Footer() {
               {SITE_NAME}
             </span>
             <p className="text-gray-600 text-xs tracking-wide">
-              Chungbuk University Value Investment Club
+              충북대학교 가치투자학회
             </p>
           </div>
 
@@ -22,7 +22,7 @@ export default function Footer() {
               Contact Us
             </p>
             <p className="text-white text-sm mb-3">
-              President Lee Chan-hee
+              회장 이찬희
             </p>
             <div className="space-y-2">
               <a
