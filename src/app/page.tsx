@@ -66,8 +66,8 @@ const PANELS = [
   },
   {
     tag: "02",
-    title: "종목 발표",
-    subtitle: "투자위원회 심의",
+    title: "PITCH",
+    subtitle: "INVESTMENT COMMITTEE",
     lines: [
       "6주 리서치. 15분 피치.",
       "AI 반론과 크로스 리뷰를 거쳐",
@@ -77,8 +77,8 @@ const PANELS = [
   },
   {
     tag: "03",
-    title: "공동 투자",
-    subtitle: "투자조합 운영",
+    title: "CO-INVEST",
+    subtitle: "JOINT PORTFOLIO",
     lines: [
       "회원 공동 투자조합을 결성해 직접 투자를 집행한다.",
       "킬조건 기반 리스크 관리.",
@@ -223,13 +223,13 @@ export default function Home() {
                   <span className="text-white">)</span>
                 </p>
                 <p className="text-gray-600">
-                  {"// AI 워크스테이션 기반 리서치 환경"}
+                  {"// AI workstation-based research environment"}
                 </p>
                 <p className="mt-4">
                   <span className="text-white">$</span> cufa.philosophy
                 </p>
                 <p className="text-[#10b981]">
-                  → &quot;AI는 계산한다. 당신이 판단한다.&quot;
+                  → &quot;AI calculates. You decide.&quot;
                 </p>
               </div>
             </div>
@@ -242,12 +242,12 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               {[
-                { week: "W1", label: "종목 선정" },
-                { week: "W2", label: "산업 분석" },
-                { week: "W3", label: "재무 모델링" },
-                { week: "W4", label: "밸류에이션" },
-                { week: "W5", label: "IC 피치" },
-                { week: "W6", label: "피드백 반영" },
+                { week: "W1", label: "Stock Pick" },
+                { week: "W2", label: "Sector Analysis" },
+                { week: "W3", label: "Financial Model" },
+                { week: "W4", label: "Valuation" },
+                { week: "W5", label: "IC Pitch" },
+                { week: "W6", label: "Feedback" },
               ].map((block, i) => (
                 <div
                   key={block.week}
