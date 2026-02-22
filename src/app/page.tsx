@@ -58,41 +58,41 @@ const PANELS = [
     title: "RESEARCH",
     subtitle: "NEXUS WORKSTATION",
     lines: [
-      "NEXUS 플랫폼 위에서 AI가 데이터 수집부터",
-      "밸류에이션 초벌까지 보조한다.",
-      "가정을 직접 수정하고 검증하는 독자적 분석.",
+      "AI assists every step from data collection",
+      "to first-draft valuation on the NEXUS platform.",
+      "Independent analysis with direct assumption control.",
     ],
     keywords: ["Data Pipeline", "LLM Cross-Review", "Assumption Override"],
   },
   {
     tag: "02",
-    title: "종목 발표",
-    subtitle: "투자위원회 심의",
+    title: "PITCH",
+    subtitle: "INVESTMENT COMMITTEE",
     lines: [
-      "6주 리서치. 15분 피치.",
-      "AI 반론과 크로스 리뷰를 거쳐",
-      "편입/편출을 결정한다.",
+      "6-week research. 15-minute pitch.",
+      "Cross-reviewed against AI counterarguments.",
+      "Portfolio inclusion or exclusion decided.",
     ],
     keywords: ["15-min Pitch", "Kill Condition", "Peer Review"],
   },
   {
     tag: "03",
-    title: "공동 투자",
-    subtitle: "투자조합 운영",
+    title: "CO-INVEST",
+    subtitle: "JOINT PORTFOLIO",
     lines: [
-      "회원 공동 투자조합을 결성해 직접 투자를 집행한다.",
-      "킬조건 기반 리스크 관리.",
-      "투자 판단 저널. 실전이 가르친다.",
+      "Members form a joint fund and execute real trades.",
+      "Kill-condition-based risk management.",
+      "Investment journal. Real markets teach.",
     ],
     keywords: ["Risk Mgmt", "Trade Journal", "Real Execution"],
   },
 ];
 
 const TIMELINE = [
-  { label: "서류 접수", desc: "온라인 지원서 제출" },
-  { label: "서류 심사", desc: "지원 동기 및 적합성 평가" },
-  { label: "면접", desc: "3월 5일 개별 면접. 시간은 개별 조율." },
-  { label: "최종 합격", desc: "개별 연락" },
+  { label: "Application", desc: "Submit online application" },
+  { label: "Document Review", desc: "Motivation and fit assessment" },
+  { label: "Interview", desc: "Individual interviews on Mar 5. Time to be arranged." },
+  { label: "Final Offer", desc: "Individual notification" },
 ];
 
 export default function Home() {
@@ -116,7 +116,7 @@ export default function Home() {
         </p>
         <div className="h-8 mb-16">
           <TypeWriter
-            text="리서치의 기준을 다시 쓴다."
+            text="Rewriting the standard of research."
             speed={60}
             delay={800}
             className="text-gray-400 text-base sm:text-lg"
@@ -223,13 +223,13 @@ export default function Home() {
                   <span className="text-white">)</span>
                 </p>
                 <p className="text-gray-600">
-                  {"// AI 워크스테이션 기반 리서치 환경"}
+                  {"// AI workstation-based research environment"}
                 </p>
                 <p className="mt-4">
                   <span className="text-white">$</span> cufa.philosophy
                 </p>
                 <p className="text-[#10b981]">
-                  → &quot;AI는 계산한다. 당신이 판단한다.&quot;
+                  → &quot;AI calculates. You decide.&quot;
                 </p>
               </div>
             </div>
@@ -242,12 +242,12 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               {[
-                { week: "W1", label: "종목 선정" },
-                { week: "W2", label: "산업 분석" },
-                { week: "W3", label: "재무 모델링" },
-                { week: "W4", label: "밸류에이션" },
-                { week: "W5", label: "IC 피치" },
-                { week: "W6", label: "피드백 반영" },
+                { week: "W1", label: "Stock Pick" },
+                { week: "W2", label: "Sector Analysis" },
+                { week: "W3", label: "Financial Model" },
+                { week: "W4", label: "Valuation" },
+                { week: "W5", label: "IC Pitch" },
+                { week: "W6", label: "Feedback" },
               ].map((block, i) => (
                 <div
                   key={block.week}
@@ -303,20 +303,20 @@ export default function Home() {
             <div className="space-y-6">
               {[
                 {
-                  q: "전공 제한이 있나요?",
-                  a: "없다. 투자에 관심 있는 충북대 재학생이면 된다.",
+                  q: "Is there a major requirement?",
+                  a: "None. Any Chungbuk University student interested in investing is welcome.",
                 },
                 {
-                  q: "활동 기간은?",
-                  a: "2학기 연속 참여 필수. 매주 목요일 저녁 7시. 6주 리서치 블록 2회 + 투자위원회 심의.",
+                  q: "How long is the commitment?",
+                  a: "2 consecutive semesters required. Every Thursday 7 PM. Two 6-week research blocks + IC review.",
                 },
                 {
-                  q: "휴학생도 지원 가능한가요?",
-                  a: "지원 가능. 단, 학회 가입 시점에 복학 상태여야 한다.",
+                  q: "Can students on leave of absence apply?",
+                  a: "Yes. Must be re-enrolled by the time of joining.",
                 },
                 {
-                  q: "코딩 경험이 필요한가요?",
-                  a: "필요 없다. AI 도구 활용은 입회 후 교육한다.",
+                  q: "Is coding experience required?",
+                  a: "Not at all. AI tool training is provided after joining.",
                 },
               ].map((faq) => (
                 <div key={faq.q}>

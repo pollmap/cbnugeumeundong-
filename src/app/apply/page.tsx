@@ -5,8 +5,8 @@ import Link from "next/link";
 import { ArrowRight, Loader2, CheckCircle, XCircle, X } from "lucide-react";
 import Footer from "@/components/Footer";
 
-const GRADES = ["1학년", "2학년", "3학년", "4학년"] as const;
-const EXPERIENCE = ["없음", "1년 미만", "1~3년", "3년 이상"] as const;
+const GRADES = ["Freshman", "Sophomore", "Junior", "Senior"] as const;
+const EXPERIENCE = ["None", "< 1 year", "1–3 years", "3+ years"] as const;
 const MOTIVATION_MIN = 500;
 
 interface FormData {
@@ -83,7 +83,7 @@ function Modal({
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-600 hover:text-white transition-colors"
-          aria-label="닫기"
+          aria-label="Close"
         >
           <X className="w-5 h-5" />
         </button>
@@ -115,16 +115,16 @@ export default function ApplyPage() {
     setSubmitting(true);
 
     // Client-side validation with specific reasons
-    if (form.canCommit === "아니오") {
+    if (form.canCommit === "No") {
       setSubmitting(false);
-      showErrorModal("2학기 연속 참여가 불가능한 경우 지원할 수 없습니다.");
+      showErrorModal("Applicants unable to commit for 2 consecutive semesters are not eligible.");
       return;
     }
 
     if (form.motivation.length < MOTIVATION_MIN) {
       setSubmitting(false);
       showErrorModal(
-        `지원 동기를 ${MOTIVATION_MIN}자 이상 작성해주세요.\n현재 ${form.motivation.length}자 / 최소 ${MOTIVATION_MIN}자`
+        `Please write at least ${MOTIVATION_MIN} characters for your motivation.\nCurrent: ${form.motivation.length} / Minimum: ${MOTIVATION_MIN}`
       );
       return;
     }
@@ -141,11 +141,11 @@ export default function ApplyPage() {
         setShowSuccess(true);
       } else {
         setSubmitting(false);
-        showErrorModal(data.message || "제출 중 오류가 발생했습니다.");
+        showErrorModal(data.message || "An error occurred during submission.");
       }
     } catch {
       setSubmitting(false);
-      showErrorModal("서버에 연결할 수 없습니다.\n네트워크 연결을 확인해주세요.");
+      showErrorModal("Unable to connect to server.\nPlease check your network connection.");
     }
   }
 
@@ -158,30 +158,30 @@ export default function ApplyPage() {
 
   return (
     <div className="min-h-screen pt-16">
-      {/* ── 제출 완료 팝업 ── */}
+      {/* ── Success Modal ── */}
       <Modal open={showSuccess} onClose={() => setShowSuccess(false)}>
         <div className="text-center">
           <CheckCircle className="w-14 h-14 text-[#10b981] mx-auto mb-5" />
           <h2 className="font-display text-white text-2xl tracking-wider mb-3">
-            제출 완료
+            Submitted
           </h2>
           <div className="space-y-2 mb-6">
             <p className="text-gray-300 text-sm">
-              지원서가 정상적으로 접수되었습니다!
+              Your application has been successfully received!
             </p>
             <p className="text-gray-400 text-sm">
-              서류 심사 후 면접 대상자에게 개별 연락드리겠습니다.
+              We will contact interview candidates individually after the document review.
             </p>
           </div>
           <div className="glass-card p-4 mb-6">
-            <p className="text-gray-500 text-xs mb-2">전형 절차</p>
+            <p className="text-gray-500 text-xs mb-2">Selection Process</p>
             <p className="text-white text-sm tracking-wide">
-              온라인 지원서 제출 → 서류 심사 → 면접 → 최종 합격
+              Online Application → Document Review → Interview → Final Offer
             </p>
           </div>
           <div className="glass-card p-3 mb-6">
             <p className="text-gray-500 text-xs">
-              지원자: <span className="text-gray-300">{form.name}</span> · <span className="text-gray-300">{form.department}</span>
+              Applicant: <span className="text-gray-300">{form.name}</span> · <span className="text-gray-300">{form.department}</span>
             </p>
           </div>
           <button
@@ -191,23 +191,23 @@ export default function ApplyPage() {
             }}
             className="w-full py-3 bg-white text-black font-semibold text-sm tracking-wider rounded hover:bg-gray-200 transition-colors mb-3"
           >
-            확인
+            Confirm
           </button>
           <Link
             href="/apply/check"
             className="block text-center text-gray-500 text-xs hover:text-gray-300 transition-colors underline underline-offset-4"
           >
-            접수 여부 다시 확인하기
+            Check application status
           </Link>
         </div>
       </Modal>
 
-      {/* ── 제출 실패 팝업 ── */}
+      {/* ── Error Modal ── */}
       <Modal open={showError} onClose={() => setShowError(false)}>
         <div className="text-center">
           <XCircle className="w-14 h-14 text-[#ef4444] mx-auto mb-5" />
           <h2 className="font-display text-white text-2xl tracking-wider mb-3">
-            제출 불가
+            Submission Failed
           </h2>
           <div className="border border-[rgba(239,68,68,0.3)] bg-[rgba(239,68,68,0.06)] rounded-xl p-4 mb-6">
             <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">
@@ -218,7 +218,7 @@ export default function ApplyPage() {
             onClick={() => setShowError(false)}
             className="w-full py-3 bg-white text-black font-semibold text-sm tracking-wider rounded hover:bg-gray-200 transition-colors"
           >
-            돌아가서 수정하기
+            Go back and edit
           </button>
         </div>
       </Modal>
@@ -232,17 +232,17 @@ export default function ApplyPage() {
             APPLY
           </h1>
           <p className="text-gray-500 text-sm mb-2">
-            충북대학교 가치투자학회 CUFA 신규 회원 모집
+            CUFA Chungbuk University Value Investment Club — New Member Recruitment
           </p>
           <div className="text-gray-600 text-xs space-y-1 mb-4">
-            <p>2학기 연속 참여 필수 / 휴학생 지원 가능 (가입 시 복학 필요)</p>
+            <p>2 consecutive semesters required / Students on leave may apply (must re-enroll upon joining)</p>
           </div>
           <div className="glass-card px-4 py-3 mb-4">
             <p className="text-gray-400 text-xs leading-relaxed">
-              전형 절차: <span className="text-white">온라인 지원서 제출</span> → <span className="text-white">서류 심사</span> → <span className="text-white">면접</span> → <span className="text-white">최종 합격</span>
+              Selection Process: <span className="text-white">Online Application</span> → <span className="text-white">Document Review</span> → <span className="text-white">Interview</span> → <span className="text-white">Final Offer</span>
             </p>
             <p className="text-gray-600 text-xs mt-1">
-              면접: 3월 5일 개별 면접 (시간 개별 조율)
+              Interview: Individual interviews on Mar 5 (time to be arranged)
             </p>
           </div>
           <div className="mb-12">
@@ -250,12 +250,12 @@ export default function ApplyPage() {
               href="/apply/check"
               className="text-gray-600 text-xs hover:text-gray-400 transition-colors underline underline-offset-4"
             >
-              이미 지원하셨나요? 접수 여부 확인하기
+              Already applied? Check your application status
             </Link>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-8">
-            {/* 인적사항 */}
+            {/* Personal Info */}
             <div className="space-y-5">
               <p className="text-gray-600 text-xs tracking-widest uppercase">
                 Personal Info
@@ -263,20 +263,20 @@ export default function ApplyPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className={labelClass}>이름{requiredMark}</label>
+                  <label className={labelClass}>Name{requiredMark}</label>
                   <input
                     required
                     type="text"
                     value={form.name}
                     onChange={(e) => set("name", e.target.value)}
-                    placeholder="홍길동"
+                    placeholder="Hong Gil-dong"
                     className={inputClass}
                   />
                 </div>
                 <div>
                   <label className={labelClass}>
-                    학번{requiredMark}
-                    <span className="text-gray-600 text-xs ml-2">(10자리)</span>
+                    Student ID{requiredMark}
+                    <span className="text-gray-600 text-xs ml-2">(10 digits)</span>
                   </label>
                   <input
                     required
@@ -292,20 +292,20 @@ export default function ApplyPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className={labelClass}>학과{requiredMark}</label>
+                  <label className={labelClass}>Department{requiredMark}</label>
                   <input
                     required
                     type="text"
                     value={form.department}
                     onChange={(e) => set("department", e.target.value)}
-                    placeholder="경영학과"
+                    placeholder="Business Administration"
                     className={inputClass}
                   />
                 </div>
                 <div>
                   <label className={labelClass}>
-                    학년{requiredMark}
-                    <span className="text-gray-600 text-xs ml-2">(2026년 1학기 기준)</span>
+                    Grade{requiredMark}
+                    <span className="text-gray-600 text-xs ml-2">(As of Spring 2026)</span>
                   </label>
                   <select
                     required
@@ -314,7 +314,7 @@ export default function ApplyPage() {
                     className={`${inputClass} ${!form.grade ? "text-gray-700" : ""}`}
                   >
                     <option value="" disabled>
-                      선택
+                      Select
                     </option>
                     {GRADES.map((g) => (
                       <option key={g} value={g}>
@@ -327,7 +327,7 @@ export default function ApplyPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className={labelClass}>연락처{requiredMark}</label>
+                  <label className={labelClass}>Phone{requiredMark}</label>
                   <input
                     required
                     type="tel"
@@ -339,7 +339,7 @@ export default function ApplyPage() {
                   />
                 </div>
                 <div>
-                  <label className={labelClass}>이메일{requiredMark}</label>
+                  <label className={labelClass}>Email{requiredMark}</label>
                   <input
                     required
                     type="email"
@@ -352,7 +352,7 @@ export default function ApplyPage() {
               </div>
             </div>
 
-            {/* 자격 확인 */}
+            {/* Eligibility */}
             <div className="space-y-5">
               <p className="text-gray-600 text-xs tracking-widest uppercase">
                 Eligibility
@@ -360,10 +360,10 @@ export default function ApplyPage() {
 
               <div>
                 <label className={labelClass}>
-                  2학기 연속 참여가 가능합니까?{requiredMark}
+                  Can you commit for 2 consecutive semesters?{requiredMark}
                 </label>
                 <div className="flex gap-4">
-                  {["예", "아니오"].map((opt) => (
+                  {["Yes", "No"].map((opt) => (
                     <label
                       key={opt}
                       className={`flex-1 text-center py-3 border rounded text-sm cursor-pointer transition-colors ${
@@ -385,22 +385,22 @@ export default function ApplyPage() {
                     </label>
                   ))}
                 </div>
-                {form.canCommit === "아니오" && (
+                {form.canCommit === "No" && (
                   <p className="text-gray-500 text-xs mt-2">
-                    2학기 연속 참여가 불가능한 경우 지원할 수 없습니다.
+                    Applicants unable to commit for 2 consecutive semesters are not eligible.
                   </p>
                 )}
               </div>
 
               <div>
                 <label className={labelClass}>
-                  현재 재학 중입니까?{requiredMark}
+                  Are you currently enrolled?{requiredMark}
                   <span className="text-gray-600 text-xs ml-2">
-                    (휴학생 지원 가능, 단 가입 시 복학 필요)
+                    (Students on leave may apply, but must re-enroll upon joining)
                   </span>
                 </label>
                 <div className="flex gap-4">
-                  {["예, 재학 중입니다", "아니오 (휴학 중)"].map((opt) => (
+                  {["Yes, enrolled", "No (on leave)"].map((opt) => (
                     <label
                       key={opt}
                       className={`flex-1 text-center py-3 border rounded text-sm cursor-pointer transition-colors ${
@@ -422,15 +422,15 @@ export default function ApplyPage() {
                     </label>
                   ))}
                 </div>
-                {form.isEnrolled === "아니오 (휴학 중)" && (
+                {form.isEnrolled === "No (on leave)" && (
                   <p className="text-gray-500 text-xs mt-2">
-                    지원은 가능합니다. 단, 최종 합격 후 학회 가입 시점에 복학 상태여야 합니다.
+                    You may apply. However, you must be re-enrolled by the time of joining after final acceptance.
                   </p>
                 )}
               </div>
 
               <div>
-                <label className={labelClass}>투자 경험{requiredMark}</label>
+                <label className={labelClass}>Investment Experience{requiredMark}</label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {EXPERIENCE.map((opt) => (
                     <label
@@ -457,7 +457,7 @@ export default function ApplyPage() {
               </div>
             </div>
 
-            {/* 서술 */}
+            {/* Motivation */}
             <div className="space-y-5">
               <p className="text-gray-600 text-xs tracking-widest uppercase">
                 Motivation
@@ -465,16 +465,16 @@ export default function ApplyPage() {
 
               <div>
                 <label className={labelClass}>
-                  지원 동기{requiredMark}
+                  Why CUFA?{requiredMark}
                   <span className="text-gray-600 text-xs ml-2">
-                    (500자 이상)
+                    (500+ characters)
                   </span>
                 </label>
                 <textarea
                   required
                   value={form.motivation}
                   onChange={(e) => set("motivation", e.target.value)}
-                  placeholder="CUFA에 지원하게 된 동기를 500자 이상으로 작성해주세요."
+                  placeholder="Write your motivation for applying to CUFA (500+ characters)."
                   rows={6}
                   className={`${inputClass} resize-none`}
                 />
@@ -487,30 +487,30 @@ export default function ApplyPage() {
                     <span className={motivationLen > 0 && !motivationOk ? "text-white" : ""}>
                       {motivationLen}
                     </span>
-                    <span className="text-gray-700"> / {MOTIVATION_MIN}자</span>
+                    <span className="text-gray-700"> / {MOTIVATION_MIN} chars</span>
                   </span>
                 </div>
               </div>
 
               <div>
                 <label className={labelClass}>
-                  본인이 한 가장 큰 덕질은?{requiredMark}
+                  What&apos;s your biggest deep dive?{requiredMark}
                   <span className="text-gray-600 text-xs ml-2">
-                    (분야 무관, 자유롭게)
+                    (Any field, write freely)
                   </span>
                 </label>
                 <textarea
                   required
                   value={form.deepDive}
                   onChange={(e) => set("deepDive", e.target.value)}
-                  placeholder="투자, 게임, 음악, 운동, 덕질 등 어떤 분야든 좋습니다. 본인이 가장 깊게 파본 경험을 자유롭게 적어주세요."
+                  placeholder="Investing, gaming, music, sports, or any field. Write freely about the topic you've gone deepest on."
                   rows={4}
                   className={`${inputClass} resize-none`}
                 />
               </div>
             </div>
 
-            {/* 관심 산업 & 기업 */}
+            {/* Interests */}
             <div className="space-y-5">
               <p className="text-gray-600 text-xs tracking-widest uppercase">
                 Interests
@@ -518,9 +518,9 @@ export default function ApplyPage() {
 
               <div>
                 <label className={labelClass}>
-                  관심 산업{requiredMark}
+                  Industries of Interest{requiredMark}
                   <span className="text-gray-600 text-xs ml-2">
-                    (2개)
+                    (Pick 2)
                   </span>
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -529,7 +529,7 @@ export default function ApplyPage() {
                     type="text"
                     value={form.industry1}
                     onChange={(e) => set("industry1", e.target.value)}
-                    placeholder="예: 반도체"
+                    placeholder="e.g., Semiconductors"
                     className={inputClass}
                   />
                   <input
@@ -537,7 +537,7 @@ export default function ApplyPage() {
                     type="text"
                     value={form.industry2}
                     onChange={(e) => set("industry2", e.target.value)}
-                    placeholder="예: 2차전지"
+                    placeholder="e.g., EV Batteries"
                     className={inputClass}
                   />
                 </div>
@@ -545,9 +545,9 @@ export default function ApplyPage() {
 
               <div>
                 <label className={labelClass}>
-                  관심 기업{requiredMark}
+                  Companies of Interest{requiredMark}
                   <span className="text-gray-600 text-xs ml-2">
-                    (2개)
+                    (Pick 2)
                   </span>
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -556,7 +556,7 @@ export default function ApplyPage() {
                     type="text"
                     value={form.company1}
                     onChange={(e) => set("company1", e.target.value)}
-                    placeholder="예: 삼성전자"
+                    placeholder="e.g., Samsung Electronics"
                     className={inputClass}
                   />
                   <input
@@ -564,7 +564,7 @@ export default function ApplyPage() {
                     type="text"
                     value={form.company2}
                     onChange={(e) => set("company2", e.target.value)}
-                    placeholder="예: LG에너지솔루션"
+                    placeholder="e.g., LG Energy Solution"
                     className={inputClass}
                   />
                 </div>
@@ -572,34 +572,34 @@ export default function ApplyPage() {
             </div>
 
             {/*
-              개인정보 수집·이용 동의
-              - 수집된 개인정보는 오직 지원 심사 목적으로만 사용됩니다.
-              - 최종 합격 또는 탈락 확정 후 자동으로 파기됩니다.
+              Privacy Policy
+              - Collected personal data is used solely for application screening.
+              - Automatically deleted after final acceptance or rejection.
             */}
             <div className="glass-card p-5 space-y-4">
               <p className="text-white text-sm font-semibold">
-                개인정보 수집·이용 동의
+                Privacy Policy Agreement
               </p>
               <div className="bg-[rgba(255,255,255,0.03)] rounded-lg p-4 space-y-3 text-xs text-gray-400 leading-relaxed max-h-48 overflow-y-auto">
                 <div>
-                  <p className="text-gray-300 font-medium mb-1">1. 수집 항목</p>
-                  <p>이름, 학번, 학과, 학년, 연락처, 이메일, 투자 경험, 지원 동기, 관심 산업·기업</p>
+                  <p className="text-gray-300 font-medium mb-1">1. Data Collected</p>
+                  <p>Name, student ID, department, grade, phone, email, investment experience, motivation, industries &amp; companies of interest</p>
                 </div>
                 <div>
-                  <p className="text-gray-300 font-medium mb-1">2. 수집 목적</p>
-                  <p>CUFA 신규 회원 모집을 위한 서류 심사 및 면접 전형</p>
+                  <p className="text-gray-300 font-medium mb-1">2. Purpose</p>
+                  <p>Document screening and interview process for CUFA new member recruitment</p>
                 </div>
                 <div>
-                  <p className="text-gray-300 font-medium mb-1">3. 보유 및 이용 기간</p>
-                  <p>최종 합격 또는 탈락 확정 후 즉시 파기 (최대 해당 학기 종료 시점까지)</p>
+                  <p className="text-gray-300 font-medium mb-1">3. Retention Period</p>
+                  <p>Immediately deleted upon final acceptance or rejection (at most until end of the semester)</p>
                 </div>
                 <div>
-                  <p className="text-gray-300 font-medium mb-1">4. 동의 거부 권리</p>
-                  <p>동의를 거부할 수 있으나, 거부 시 지원이 불가합니다.</p>
+                  <p className="text-gray-300 font-medium mb-1">4. Right to Refuse</p>
+                  <p>You may refuse, but refusal will prevent you from applying.</p>
                 </div>
                 <div>
-                  <p className="text-gray-300 font-medium mb-1">5. 제3자 제공</p>
-                  <p>수집된 개인정보는 제3자에게 제공되지 않습니다.</p>
+                  <p className="text-gray-300 font-medium mb-1">5. Third-Party Sharing</p>
+                  <p>Collected personal data will not be shared with any third party.</p>
                 </div>
               </div>
               <label className="flex items-center gap-2 cursor-pointer">
@@ -610,7 +610,7 @@ export default function ApplyPage() {
                   className="w-4 h-4 accent-white rounded"
                 />
                 <span className="text-white text-sm">
-                  위 내용을 확인하였으며, 개인정보 수집·이용에 동의합니다.
+                  I have read and agree to the collection and use of my personal data.
                 </span>
                 <span className="text-gray-500 ml-1">*</span>
               </label>
@@ -625,11 +625,11 @@ export default function ApplyPage() {
               {submitting ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  제출 중...
+                  Submitting...
                 </>
               ) : (
                 <>
-                  제출하기
+                  Submit
                   <ArrowRight className="w-4 h-4" />
                 </>
               )}

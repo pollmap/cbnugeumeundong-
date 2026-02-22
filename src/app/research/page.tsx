@@ -47,7 +47,7 @@ export default function ResearchPage() {
             REPORTS
           </h1>
           <p className="text-gray-500 text-sm max-w-xl leading-relaxed">
-            AI 워크스테이션과 독자적 분석을 거쳐 작성된 기업분석 리포트.
+            Company analysis reports produced through AI workstation and independent research.
           </p>
         </div>
       </section>
@@ -114,8 +114,8 @@ export default function ResearchPage() {
                 PREPARING
               </p>
               <p className="text-gray-600 text-sm max-w-sm mx-auto">
-                2026년 1학기 첫 번째 리서치 블록 진행 중.
-                팀당 6주 블록을 거쳐 작성된 리포트가 이곳에 공개된다.
+                First research block of Spring 2026 in progress.
+                Reports produced through a 6-week block per team will be published here.
               </p>
             </div>
           )}
@@ -130,12 +130,12 @@ export default function ResearchPage() {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {[
-              { title: "투자 요약", desc: "핵심 투자포인트와 적정가" },
-              { title: "기업 & 산업", desc: "사업 구조, 경쟁 환경" },
-              { title: "재무 분석", desc: "주요 지표와 성장성" },
-              { title: "밸류에이션", desc: "DCF, 멀티플 복수 모델" },
-              { title: "AI vs 본인", desc: "AI 산출 vs 수정 가정 비교" },
-              { title: "리스크", desc: "핵심 리스크와 킬조건" },
+              { title: "Investment Summary", desc: "Key thesis and target price" },
+              { title: "Business & Industry", desc: "Business model, competitive landscape" },
+              { title: "Financial Analysis", desc: "Key metrics and growth profile" },
+              { title: "Valuation", desc: "DCF, multiples — multiple models" },
+              { title: "AI vs Analyst", desc: "AI output vs revised assumptions" },
+              { title: "Risk", desc: "Key risks and kill conditions" },
             ].map((item) => (
               <div
                 key={item.title}
