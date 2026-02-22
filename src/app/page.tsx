@@ -229,7 +229,7 @@ export default function Home() {
                   <span className="text-white">$</span> cufa.philosophy
                 </p>
                 <p className="text-[#10b981]">
-                  → &quot;AI calculates. You decide.&quot;
+                  → &quot;AI computes. You decide.&quot;
                 </p>
               </div>
             </div>
