@@ -116,7 +116,7 @@ export default function Home() {
         </p>
         <div className="h-8 mb-16">
           <TypeWriter
-            text="리서치의 기준을 다시 쓴다."
+            text="AI computes. You decide."
             speed={60}
             delay={800}
             className="text-gray-400 text-base sm:text-lg"
