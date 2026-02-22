@@ -116,7 +116,7 @@ export default function Home() {
         </p>
         <div className="h-8 mb-16">
           <TypeWriter
-            text="AI calculates. You decide."
+            text="AI computes. You decide."
             speed={60}
             delay={800}
             className="text-gray-400 text-base sm:text-lg"
