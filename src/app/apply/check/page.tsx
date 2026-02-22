@@ -142,15 +142,15 @@ export default function CheckPage() {
 
           {/* 결과 */}
           {error && (
-            <div className="mt-8 border border-red-500/20 bg-red-500/5 rounded p-5 text-center">
-              <XCircle className="w-10 h-10 text-red-400 mx-auto mb-3" />
+            <div className="mt-8 border border-[rgba(239,68,68,0.3)] bg-[rgba(239,68,68,0.06)] rounded-xl p-5 text-center">
+              <XCircle className="w-10 h-10 text-[#ef4444] mx-auto mb-3" />
               <p className="text-gray-300 text-sm">{error}</p>
             </div>
           )}
 
           {result && result.found && result.application && (
-            <div className="mt-8 border border-emerald-500/20 bg-emerald-500/5 rounded p-6 text-center">
-              <CheckCircle className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
+            <div className="mt-8 border border-[rgba(16,185,129,0.3)] bg-[rgba(16,185,129,0.06)] rounded-xl p-6 text-center">
+              <CheckCircle className="w-12 h-12 text-[#10b981] mx-auto mb-4" />
               <h3 className="font-display text-white text-xl tracking-wider mb-4">
                 접수 완료
               </h3>
@@ -179,7 +179,7 @@ export default function CheckPage() {
           )}
 
           {result && !result.found && (
-            <div className="mt-8 border border-white/10 rounded p-6 text-center">
+            <div className="mt-8 glass-card p-6 text-center">
               <XCircle className="w-12 h-12 text-gray-600 mx-auto mb-4" />
               <h3 className="font-display text-white text-xl tracking-wider mb-3">
                 지원 내역 없음

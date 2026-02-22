@@ -60,7 +60,7 @@ export default function ResearchPage() {
               {reports.map((report) => (
                 <div
                   key={report.title}
-                  className="bg-dark-900/60 border border-white/5 rounded-xl p-8 hover:border-white/20 transition-all duration-300"
+                  className="glass-card p-8 hover:border-[rgba(255,255,255,0.15)] transition-all duration-300"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
                     <div className="flex-1">
@@ -107,7 +107,7 @@ export default function ResearchPage() {
             </div>
           ) : (
             <div className="text-center py-24">
-              <div className="w-16 h-16 border border-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 glass-card rounded-full flex items-center justify-center mx-auto mb-6">
                 <FileText className="w-8 h-8 text-gray-700" />
               </div>
               <p className="text-white text-lg font-display tracking-wider mb-3">
@@ -139,7 +139,7 @@ export default function ResearchPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-dark-800/50 border border-white/5 rounded-lg p-4 hover:border-white/20 transition-colors"
+                className="glass-card p-4 hover:border-[rgba(255,255,255,0.15)] transition-colors"
               >
                 <p className="text-white text-sm font-medium mb-1">
                   {item.title}

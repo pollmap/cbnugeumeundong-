@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter } from "next/font/google";
+import { Bebas_Neue, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -15,6 +15,12 @@ const bebasNeue = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-bebas-neue",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -34,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${inter.variable} ${bebasNeue.variable} antialiased min-h-screen flex flex-col`}
+        className={`${inter.variable} ${bebasNeue.variable} ${jetbrainsMono.variable} antialiased min-h-screen flex flex-col bg-dot-grid`}
       >
         <Navbar />
         <main className="flex-1">{children}</main>

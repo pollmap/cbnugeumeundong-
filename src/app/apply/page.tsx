@@ -77,7 +77,7 @@ function Modal({
     >
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
       <div
-        className="relative bg-dark-900 border border-white/10 rounded-lg max-w-md w-full p-8 animate-in fade-in zoom-in-95 duration-200"
+        className="relative glass-card max-w-md w-full p-8 animate-in fade-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -161,7 +161,7 @@ export default function ApplyPage() {
       {/* ── 제출 완료 팝업 ── */}
       <Modal open={showSuccess} onClose={() => setShowSuccess(false)}>
         <div className="text-center">
-          <CheckCircle className="w-14 h-14 text-emerald-400 mx-auto mb-5" />
+          <CheckCircle className="w-14 h-14 text-[#10b981] mx-auto mb-5" />
           <h2 className="font-display text-white text-2xl tracking-wider mb-3">
             제출 완료
           </h2>
@@ -173,13 +173,13 @@ export default function ApplyPage() {
               서류 심사 후 면접 대상자에게 개별 연락드리겠습니다.
             </p>
           </div>
-          <div className="border border-white/10 rounded p-4 mb-6">
+          <div className="glass-card p-4 mb-6">
             <p className="text-gray-500 text-xs mb-2">전형 절차</p>
             <p className="text-white text-sm tracking-wide">
               온라인 지원서 제출 → 서류 심사 → 면접 → 최종 합격
             </p>
           </div>
-          <div className="bg-dark-800/50 border border-white/5 rounded p-3 mb-6">
+          <div className="glass-card p-3 mb-6">
             <p className="text-gray-500 text-xs">
               지원자: <span className="text-gray-300">{form.name}</span> · <span className="text-gray-300">{form.department}</span>
             </p>
@@ -205,11 +205,11 @@ export default function ApplyPage() {
       {/* ── 제출 실패 팝업 ── */}
       <Modal open={showError} onClose={() => setShowError(false)}>
         <div className="text-center">
-          <XCircle className="w-14 h-14 text-red-400 mx-auto mb-5" />
+          <XCircle className="w-14 h-14 text-[#ef4444] mx-auto mb-5" />
           <h2 className="font-display text-white text-2xl tracking-wider mb-3">
             제출 불가
           </h2>
-          <div className="border border-red-500/20 bg-red-500/5 rounded p-4 mb-6">
+          <div className="border border-[rgba(239,68,68,0.3)] bg-[rgba(239,68,68,0.06)] rounded-xl p-4 mb-6">
             <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">
               {errorMsg}
             </p>
@@ -237,7 +237,7 @@ export default function ApplyPage() {
           <div className="text-gray-600 text-xs space-y-1 mb-4">
             <p>2학기 연속 참여 필수 / 휴학생 지원 가능 (가입 시 복학 필요)</p>
           </div>
-          <div className="border border-white/10 rounded px-4 py-3 mb-4">
+          <div className="glass-card px-4 py-3 mb-4">
             <p className="text-gray-400 text-xs leading-relaxed">
               전형 절차: <span className="text-white">온라인 지원서 제출</span> → <span className="text-white">서류 심사</span> → <span className="text-white">면접</span> → <span className="text-white">최종 합격</span>
             </p>
@@ -576,11 +576,11 @@ export default function ApplyPage() {
               - 수집된 개인정보는 오직 지원 심사 목적으로만 사용됩니다.
               - 최종 합격 또는 탈락 확정 후 자동으로 파기됩니다.
             */}
-            <div className="border border-white/10 rounded p-5 space-y-4">
+            <div className="glass-card p-5 space-y-4">
               <p className="text-white text-sm font-semibold">
                 개인정보 수집·이용 동의
               </p>
-              <div className="bg-dark-800/50 rounded p-4 space-y-3 text-xs text-gray-400 leading-relaxed max-h-48 overflow-y-auto">
+              <div className="bg-[rgba(255,255,255,0.03)] rounded-lg p-4 space-y-3 text-xs text-gray-400 leading-relaxed max-h-48 overflow-y-auto">
                 <div>
                   <p className="text-gray-300 font-medium mb-1">1. 수집 항목</p>
                   <p>이름, 학번, 학과, 학년, 연락처, 이메일, 투자 경험, 지원 동기, 관심 산업·기업</p>
