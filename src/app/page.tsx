@@ -208,7 +208,7 @@ export default function Home() {
 
           {/* Terminal block */}
           <FadeIn>
-            <div className="bg-dark-900/80 border border-white/5 rounded-xl p-6 sm:p-8 font-mono text-sm mb-12">
+            <div className="glass-card p-6 sm:p-8 font-mono text-sm mb-12">
               <div className="flex items-center gap-2 mb-6">
                 <Terminal className="w-4 h-4 text-white" />
                 <span className="text-gray-600 text-xs">cufa_terminal</span>
@@ -228,7 +228,7 @@ export default function Home() {
                 <p className="mt-4">
                   <span className="text-white">$</span> cufa.philosophy
                 </p>
-                <p className="text-white">
+                <p className="text-[#10b981]">
                   → &quot;AI는 계산한다. 당신이 판단한다.&quot;
                 </p>
               </div>
@@ -251,12 +251,13 @@ export default function Home() {
               ].map((block, i) => (
                 <div
                   key={block.week}
-                  className="relative bg-dark-800/50 border border-white/5 rounded-lg p-4 text-center group hover:border-white/20 transition-colors"
+                  className="relative glass-card p-4 text-center group transition-all duration-200"
+                  style={block.week === "W5" ? { border: "1px solid rgba(124,106,247,0.35)" } : undefined}
                 >
                   <span className="text-white/50 text-xs font-mono block mb-1">
                     {block.week}
                   </span>
-                  <span className="text-white text-sm">{block.label}</span>
+                  <span className={`text-sm ${block.week === "W5" ? "text-[#7c6af7]" : "text-white"}`}>{block.label}</span>
                   {i < 5 && (
                     <div className="hidden lg:block absolute top-1/2 -right-4 w-4 h-px bg-white/10" />
                   )}
@@ -284,7 +285,7 @@ export default function Home() {
             <div className="relative pl-8 border-l border-white/10">
               {TIMELINE.map((step, i) => (
                 <div key={step.label} className="relative mb-8 last:mb-0">
-                  <div className="absolute -left-[calc(2rem+5px)] top-1 w-2.5 h-2.5 rounded-full bg-white/20 border border-white/60" />
+                  <div className="absolute -left-[calc(2rem+5px)] top-1 w-2.5 h-2.5 rounded-full bg-[#7c6af7] border border-[rgba(124,106,247,0.5)]" />
                   <p className="text-white text-sm font-medium mb-1">
                     <span className="text-white/40 font-mono mr-2">
                       {String(i + 1).padStart(2, "0")}
