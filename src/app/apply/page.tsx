@@ -121,12 +121,6 @@ export default function ApplyPage() {
       return;
     }
 
-    if (form.isEnrolled === "아니오") {
-      setSubmitting(false);
-      showErrorModal("현재 재학 중인 학생만 지원 가능합니다.\n(휴학생은 지원 불가)");
-      return;
-    }
-
     if (form.motivation.length < MOTIVATION_MIN) {
       setSubmitting(false);
       showErrorModal(
@@ -241,14 +235,14 @@ export default function ApplyPage() {
             충북대학교 가치투자학회 CUFA 신규 회원 모집
           </p>
           <div className="text-gray-600 text-xs space-y-1 mb-4">
-            <p>2학기 연속 참여 필수 / 휴학생 지원 불가</p>
+            <p>2학기 연속 참여 필수 / 휴학생 지원 가능 (가입 시 복학 필요)</p>
           </div>
           <div className="border border-white/10 rounded px-4 py-3 mb-4">
             <p className="text-gray-400 text-xs leading-relaxed">
               전형 절차: <span className="text-white">온라인 지원서 제출</span> → <span className="text-white">서류 심사</span> → <span className="text-white">면접</span> → <span className="text-white">최종 합격</span>
             </p>
             <p className="text-gray-600 text-xs mt-1">
-              서류 합격자에 한해 면접 일정을 개별 안내합니다.
+              면접: 3월 5일 개별 면접 (시간 개별 조율)
             </p>
           </div>
           <div className="mb-12">
@@ -402,11 +396,11 @@ export default function ApplyPage() {
                 <label className={labelClass}>
                   현재 재학 중입니까?{requiredMark}
                   <span className="text-gray-600 text-xs ml-2">
-                    (휴학생 지원 불가)
+                    (휴학생 지원 가능, 단 가입 시 복학 필요)
                   </span>
                 </label>
                 <div className="flex gap-4">
-                  {["예, 재학 중입니다", "아니오"].map((opt) => (
+                  {["예, 재학 중입니다", "아니오 (휴학 중)"].map((opt) => (
                     <label
                       key={opt}
                       className={`flex-1 text-center py-3 border rounded text-sm cursor-pointer transition-colors ${
@@ -428,6 +422,11 @@ export default function ApplyPage() {
                     </label>
                   ))}
                 </div>
+                {form.isEnrolled === "아니오 (휴학 중)" && (
+                  <p className="text-gray-500 text-xs mt-2">
+                    지원은 가능합니다. 단, 최종 합격 후 학회 가입 시점에 복학 상태여야 합니다.
+                  </p>
+                )}
               </div>
 
               <div>

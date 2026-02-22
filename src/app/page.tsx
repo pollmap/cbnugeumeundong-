@@ -66,10 +66,10 @@ const PANELS = [
   },
   {
     tag: "02",
-    title: "STOCK PITCH",
-    subtitle: "IC SESSION",
+    title: "종목 발표",
+    subtitle: "투자위원회 심의",
     lines: [
-      "5주 리서치. 15분 피치.",
+      "6주 리서치. 15분 피치.",
       "AI 반론과 크로스 리뷰를 거쳐",
       "편입/편출을 결정한다.",
     ],
@@ -77,10 +77,10 @@ const PANELS = [
   },
   {
     tag: "03",
-    title: "LIVE FUND",
-    subtitle: "REAL CAPITAL",
+    title: "공동 투자",
+    subtitle: "투자조합 운영",
     lines: [
-      "실전 펀드 운용.",
+      "회원 공동 투자조합을 결성해 직접 투자를 집행한다.",
       "킬조건 기반 리스크 관리.",
       "투자 판단 저널. 실전이 가르친다.",
     ],
@@ -91,7 +91,7 @@ const PANELS = [
 const TIMELINE = [
   { label: "서류 접수", desc: "온라인 지원서 제출" },
   { label: "서류 심사", desc: "지원 동기 및 적합성 평가" },
-  { label: "면접", desc: "투자 관심도 및 학습 의지 확인" },
+  { label: "면접", desc: "3월 5일 개별 면접. 시간은 개별 조율." },
   { label: "최종 합격", desc: "개별 연락" },
 ];
 
@@ -229,8 +229,7 @@ export default function Home() {
                   <span className="text-white">$</span> cufa.philosophy
                 </p>
                 <p className="text-white">
-                  → &quot;NEXUS를 활용해 가정을 수정하고
-                  검증한다.&quot;
+                  → &quot;AI는 계산한다. 당신이 판단한다.&quot;
                 </p>
               </div>
             </div>
@@ -308,11 +307,11 @@ export default function Home() {
                 },
                 {
                   q: "활동 기간은?",
-                  a: "2학기 연속 참여 필수. 6주 리서치 블록 2회 + IC 세션.",
+                  a: "2학기 연속 참여 필수. 매주 목요일 저녁 7시. 6주 리서치 블록 2회 + 투자위원회 심의.",
                 },
                 {
                   q: "휴학생도 지원 가능한가요?",
-                  a: "불가. 재학 중인 학생만 지원할 수 있다.",
+                  a: "지원 가능. 단, 학회 가입 시점에 복학 상태여야 한다.",
                 },
                 {
                   q: "코딩 경험이 필요한가요?",
