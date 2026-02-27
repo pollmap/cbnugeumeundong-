@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { ArrowRight, ArrowDown, Terminal } from "lucide-react";
 import TypeWriter from "@/components/TypeWriter";
 import Footer from "@/components/Footer";
@@ -107,7 +106,8 @@ export default function Home() {
         className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 text-center"
       >
         <p className="text-gray-600 text-xs sm:text-sm tracking-[0.3em] uppercase mb-4">
-          Chungbuk University Financial Analysis
+          <span className="block">Chungbuk University</span>
+          <span className="block">Financial Analysis</span>
         </p>
         <h1 className="font-display text-white text-6xl sm:text-8xl lg:text-[120px] tracking-[0.4em] sm:tracking-[0.5em] leading-none mb-4">
           CUFA
@@ -125,13 +125,6 @@ export default function Home() {
           />
         </div>
         <div className="flex items-center gap-6">
-          <Link
-            href="/about"
-            className="group flex items-center gap-2 px-8 py-3 border border-white/30 text-white text-sm tracking-wider rounded hover:bg-white/5 transition-all"
-          >
-            ABOUT
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
           <a
             href={APPLY_URL}
             className="group flex items-center gap-2 px-8 py-3 border border-white/30 text-white text-sm tracking-wider rounded hover:bg-white/5 transition-all"
@@ -198,6 +191,57 @@ export default function Home() {
               </FadeIn>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ====== PHILOSOPHY ====== */}
+      <section className="relative z-10 py-32 px-6">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn>
+            <p className="text-gray-600 text-xs tracking-[0.4em] uppercase mb-4">
+              Why We Write
+            </p>
+            <h2 className="font-display text-white text-3xl sm:text-4xl tracking-wider mb-4">
+              PHILOSOPHY
+            </h2>
+            <p className="text-gray-400 text-sm max-w-2xl leading-relaxed mb-4">
+              CUFA는 충북대학교 가치투자학회다.
+              리서치 보고서를 생산하는 조직이며, 모든 판단은 데이터와 토론을 거쳐 사람이 내린다.
+            </p>
+            <p className="text-gray-500 text-sm mb-12 max-w-xl">
+              보고서는 목적이 아니라 수단이다. 진짜 목적은 세 가지 역량의 체화.
+            </p>
+          </FadeIn>
+          <FadeIn>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "산업 구조를 읽는 눈",
+                  desc: "밸류체인, 경쟁 구도, 구조적 변화를 포착하는 능력. 숫자 이전에 산업의 흐름을 읽는다.",
+                },
+                {
+                  title: "숫자로 논증하는 습관",
+                  desc: "'좋다'는 감이 아니라 재무적으로 증명하는 훈련. 가정에는 반드시 근거가 따른다.",
+                },
+                {
+                  title: "판단을 글로 고정하는 규율",
+                  desc: "20페이지 보고서로 자기 판단을 방어하며 편향을 직면하는 훈련.",
+                },
+              ].map((cap) => (
+                <div
+                  key={cap.title}
+                  className="glass-card p-6 hover:border-[rgba(255,255,255,0.15)] transition-colors"
+                >
+                  <p className="text-white text-sm font-medium mb-3">
+                    {cap.title}
+                  </p>
+                  <p className="text-gray-500 text-xs leading-relaxed">
+                    {cap.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -310,19 +354,19 @@ export default function Home() {
               {[
                 {
                   q: "전공 제한이 있나요?",
-                  a: "없다. 투자에 관심 있는 충북대 재학생이면 된다.",
+                  a: "없습니다. 투자에 관심 있는 충북대 재학생이라면 누구나 지원 가능합니다.",
                 },
                 {
                   q: "활동 기간은?",
-                  a: "2학기 연속 참여 필수. 매주 목요일 저녁 7시. 5주 리서치 블록 2회 + 투자위원회 심의.",
+                  a: "2학기 연속 참여가 원칙입니다. 매주 목요일 저녁 7시에 모이며, 학기당 5주 리서치 블록 2회와 투자위원회 심의로 구성됩니다.",
                 },
                 {
                   q: "휴학생도 지원 가능한가요?",
-                  a: "지원 가능. 단, 학회 가입 시점에 복학 상태여야 한다.",
+                  a: "지원 가능합니다. 다만, 학회 가입 시점에는 복학 상태여야 합니다.",
                 },
                 {
                   q: "코딩 경험이 필요한가요?",
-                  a: "필요 없다. AI 도구 활용은 입회 후 교육한다.",
+                  a: "필요 없습니다. AI 도구 활용은 입회 후 교육해 드립니다.",
                 },
               ].map((faq) => (
                 <div key={faq.q}>
