@@ -69,8 +69,8 @@ const PANELS = [
     title: "PITCH",
     subtitle: "INVESTMENT COMMITTEE",
     lines: [
-      "6주 리서치. 15분 피치.",
-      "AI 반론과 크로스 리뷰를 거쳐",
+      "5주 리서치. 15분 피치.",
+      "상호 반론과 크로스 리뷰를 거쳐",
       "편입/편출을 결정한다.",
     ],
     keywords: ["15-min Pitch", "Kill Condition", "Peer Review"],
@@ -80,7 +80,7 @@ const PANELS = [
     title: "CO-INVEST",
     subtitle: "JOINT PORTFOLIO",
     lines: [
-      "회원 공동 투자조합을 결성해 직접 투자를 집행한다.",
+      "자격을 갖춘 회원이 투자조합에 참여해 실전 투자를 경험한다.",
       "킬조건 기반 리스크 관리.",
       "투자 판단 저널. 실전이 가르친다.",
     ],
@@ -116,7 +116,7 @@ export default function Home() {
         </p>
         <div className="h-8 mb-16">
           <TypeWriter
-            text="AI computes. You decide."
+            text="Whatever computes, You decide."
             speed={60}
             delay={800}
             className="text-gray-400 text-base sm:text-lg"
@@ -229,25 +229,24 @@ export default function Home() {
                   <span className="text-white">$</span> cufa.philosophy
                 </p>
                 <p className="text-[#10b981]">
-                  → &quot;AI computes. You decide.&quot;
+                  → &quot;Whatever computes, You decide.&quot;
                 </p>
               </div>
             </div>
           </FadeIn>
 
-          {/* 6-Week Block Diagram */}
+          {/* 5-Week Block Diagram */}
           <FadeIn>
             <p className="text-gray-500 text-xs tracking-widest uppercase mb-6">
-              6-Week Research Block
+              5-Week Research Block
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               {[
-                { week: "W1", label: "Stock Pick" },
-                { week: "W2", label: "Sector Analysis" },
-                { week: "W3", label: "Financial Model" },
-                { week: "W4", label: "Valuation" },
+                { week: "W1", label: "Industry Setup" },
+                { week: "W2", label: "Screening" },
+                { week: "W3", label: "Deep Dive" },
+                { week: "W4", label: "Defense" },
                 { week: "W5", label: "IC Pitch" },
-                { week: "W6", label: "Feedback" },
               ].map((block, i) => (
                 <div
                   key={block.week}
@@ -258,7 +257,7 @@ export default function Home() {
                     {block.week}
                   </span>
                   <span className={`text-sm ${block.week === "W5" ? "text-[#7c6af7]" : "text-white"}`}>{block.label}</span>
-                  {i < 5 && (
+                  {i < 4 && (
                     <div className="hidden lg:block absolute top-1/2 -right-4 w-4 h-px bg-white/10" />
                   )}
                 </div>
@@ -308,7 +307,7 @@ export default function Home() {
                 },
                 {
                   q: "활동 기간은?",
-                  a: "2학기 연속 참여 필수. 매주 목요일 저녁 7시. 6주 리서치 블록 2회 + 투자위원회 심의.",
+                  a: "2학기 연속 참여 필수. 매주 목요일 저녁 7시. 5주 리서치 블록 2회 + 투자위원회 심의.",
                 },
                 {
                   q: "휴학생도 지원 가능한가요?",

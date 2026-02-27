@@ -115,7 +115,7 @@ export default function ResearchPage() {
               </p>
               <p className="text-gray-600 text-sm max-w-sm mx-auto">
                 2026년 1학기 첫 번째 리서치 블록 진행 중.
-                팀당 6주 블록을 거쳐 작성된 리포트가 이곳에 공개된다.
+                팀당 5주 블록을 거쳐 작성된 리포트가 이곳에 공개된다.
               </p>
             </div>
           )}
