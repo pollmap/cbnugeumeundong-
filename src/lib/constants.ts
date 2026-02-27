@@ -16,6 +16,7 @@ interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Main", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Research", href: "/research" },
   { label: "Learning", href: "https://cufa-wiki.vercel.app/", external: true },
   { label: "NEXUS", href: "https://cufa-nexus.vercel.app/", external: true },
