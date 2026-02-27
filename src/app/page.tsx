@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { ArrowRight, ArrowDown, Terminal } from "lucide-react";
 import TypeWriter from "@/components/TypeWriter";
 import Footer from "@/components/Footer";
@@ -124,9 +125,15 @@ export default function Home() {
           />
         </div>
         <div className="flex items-center gap-6">
+          <Link
+            href="/about"
+            className="group flex items-center gap-2 px-8 py-3 border border-white/30 text-white text-sm tracking-wider rounded hover:bg-white/5 transition-all"
+          >
+            ABOUT
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
           <a
             href={APPLY_URL}
-
             className="group flex items-center gap-2 px-8 py-3 border border-white/30 text-white text-sm tracking-wider rounded hover:bg-white/5 transition-all"
           >
             APPLY
