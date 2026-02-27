@@ -122,20 +122,26 @@ export default function ResearchPage() {
         </div>
       </section>
 
-      {/* Report Structure */}
+      {/* Report Standard */}
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto">
-          <p className="text-gray-600 text-xs tracking-[0.4em] uppercase mb-6">
-            Report Structure
+          <p className="text-gray-600 text-xs tracking-[0.4em] uppercase mb-4">
+            Output
+          </p>
+          <h2 className="font-display text-white text-3xl sm:text-4xl tracking-wider mb-4">
+            REPORT STANDARD
+          </h2>
+          <p className="text-gray-500 text-sm mb-12 max-w-xl">
+            팀당 5주에 걸쳐 20~25페이지 기업분석 보고서를 완성한다.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {[
-              { title: "투자 요약", desc: "핵심 투자포인트와 적정가" },
-              { title: "기업 & 산업", desc: "사업 구조, 경쟁 환경" },
-              { title: "재무 분석", desc: "주요 지표와 성장성" },
-              { title: "밸류에이션", desc: "DCF, 멀티플 복수 모델" },
-              { title: "AI vs 본인", desc: "AI 산출 vs 수정 가정 비교" },
-              { title: "리스크", desc: "핵심 리스크와 킬조건" },
+              { title: "Executive Summary", desc: "투자논거 핵심, Bull/Bear Case, 적정가" },
+              { title: "산업 분석", desc: "시장 규모, 밸류체인, 경쟁 구도" },
+              { title: "기업 분석", desc: "사업 모델, 매출 구조, 재무 분석" },
+              { title: "투자 포인트", desc: "Bull/Bear Case, 촉매, 리스크" },
+              { title: "밸류에이션", desc: "DCF, 상대가치, 적정 주가 범위" },
+              { title: "리스크 분석", desc: "핵심 리스크, 발생 확률과 영향도" },
             ].map((item) => (
               <div
                 key={item.title}
